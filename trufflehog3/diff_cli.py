@@ -7,24 +7,27 @@ import logging
 import multiprocessing
 import os
 import sys
+import requests
+import yara
 
 from pathlib import Path
 from signal import signal, SIGINT
 from tempfile import TemporaryDirectory
-from typing import Callable
+from typing import Callable, Iterable
 from urllib.parse import urlparse
 
 from trufflehog3 import __NAME__, __VERSION__
 from trufflehog3 import DEFAULT_RULES_FILE
 from trufflehog3 import log
 
-from trufflehog3.core import diff, load, load_config, load_rules, render, scan
-from trufflehog3.models import (
+from core import diff, load, load_config, load_rules, render, scan
+from models import (
     Config,
     Exclude,
     Format,
     Issue,
     Severity,
+    Results
 )
 
 MORE = f"""
@@ -40,11 +43,23 @@ try:
 except NotImplementedError:  # pragma: no cover
     CPU_COUNT = 1
 
-
+results = []
 def run(**kwargs):
     """Run CLI."""
     args = _get_cmdline_args(**kwargs)
     log.setLevel(logging.ERROR - args.verbose * 10)
+
+    if args.org:
+        args.targets = []
+        for org in args.org:
+            
+            r = requests.get(f"https://api.github.com/orgs/{org}/repos?sort=updated")
+
+            #args.targets = [r.json()[i]['html_url'] for i in range(args.repo_depth)]
+            for i in range(args.repo_depth):
+                
+                args.targets.append(r.json()[i]['html_url'])
+        
 
     if args.version:  # pragma: no cover
         print(__VERSION__)
@@ -53,7 +68,9 @@ def run(**kwargs):
     if args.render_html:  # pragma: no cover
         issues = []
         for f in args.targets:
+            
             issues.extend(load(Issue, f))
+            
         render(issues, format=Format.HTML, file=args.output)
         return 0
 
@@ -64,7 +81,11 @@ def run(**kwargs):
     rules = load_rules(args.rules, args.severity)
     issues = []
 
+    tmp_url = ''
+    
     for target in args.targets:
+        tmp_url = target
+        print("Results from scanning",target,"in progress.")
         remote = urlparse(target).scheme in ("http", "https")
         if remote:  # pragma: no cover
             tmp = TemporaryDirectory(prefix=f"{__NAME__}-")
@@ -74,8 +95,10 @@ def run(**kwargs):
         if not args.config:
             config = load_config(target, **kw)
 
-        issues.extend(scan(target, config, rules, args.processes))
+        issues.append(Results(tmp_url, scan(target, config, rules, args.processes)))
 
+        #print(issues)
+        
         if remote:  # pragma: no cover
             tmp.cleanup()
 
@@ -146,12 +169,28 @@ def _get_cmdline_args(**defaults) -> argparse.Namespace:
         nargs=argparse.ZERO_OR_MORE,
         default=[os.curdir],
     )
+
+    organization = parser.add_argument_group("search by organization")
+    #org_group = organization.add_mutually_exclusive_group()
+    organization.add_argument(
+        "--org",
+        nargs=argparse.ZERO_OR_MORE,
+        help="Add organization to search through their repos."
+    )
+    
+    organization.add_argument(
+        "--repo-depth",
+        help="max repositories to scan",
+        type=int,
+        default=1
+    )
+
     parser.add_argument(
         "-z",
         "--zero",
         help="always exit with zero status code",
         dest="zero",
-        action="store_true",
+        action="store_false",
     )
     parser.add_argument(
         "-v",

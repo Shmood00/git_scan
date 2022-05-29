@@ -12,19 +12,20 @@ from typing import Iterable, List, Union
 
 from trufflehog3 import DEFAULT_CONFIG_FILE, DEFAULT_RULES_FILE
 from trufflehog3 import log
-from trufflehog3.models import (
+from models import (
     Config,
-    Entropy,
     Format,
+    Entropy,
     Issue,
     Model,
     Pattern,
     Rule,
     Severity,
 )
-from trufflehog3.render import text, json, html
-from trufflehog3.search import search
-from trufflehog3.source import diriter, gititer
+
+from render import text, json, html
+from search import search
+from source import diriter, gititer
 
 
 def scan(
@@ -33,6 +34,7 @@ def scan(
     rules: Iterable[Union[Entropy, Pattern]],
     processes: int,
 ) -> Iterable[Issue]:
+    
     """Return issues found during target path scan."""
     if config.no_entropy:  # pragma: no cover
         rules = [r for r in rules if not isinstance(r, Entropy)]
@@ -59,6 +61,7 @@ def scan(
                 since=config.since,
             )
         )
+        
 
     if not config.no_current:  # pragma: no cover
         files.extend(diriter(target, exclude))
@@ -72,6 +75,7 @@ def scan(
     )
 
     with multiprocessing.Pool(processes) as pool:
+        
         issues = pool.map(worker, files)
 
     return set(chain.from_iterable(issues))
@@ -253,6 +257,7 @@ def loads(cls: type, raw: str) -> Union[Model, List[Model]]:
 
     """
     data = yaml.safe_load(raw)
+    
     if isinstance(data, list):
         model = [cls(**item) for item in data]
     else:
@@ -271,6 +276,7 @@ def renders(
     format: Format,
 ) -> str:  # pragma: no cover
     """Render issues to string in given format."""
+    
     if format == Format.TEXT:
         f = text
     elif format == Format.JSON:

@@ -4,7 +4,8 @@ from typing import Iterable, Iterator, Optional, Union
 
 from trufflehog3 import NOSECRET_INLINE_RE, IGNORE_NOSECRET
 from trufflehog3 import helper, log, source
-from trufflehog3.models import Entropy, Exclude, File, Issue, Pattern
+from models import Entropy, Exclude, File, Issue, Pattern
+import yara, socket
 
 MATCH_ALL_RULE_IDS = "*"
 
@@ -83,16 +84,26 @@ def searchiter(
     """Yield issues found using provided rules."""
     content = file.read()
 
+    yara_rules = yara.compile('test.yara')
+
     for i, line in enumerate(content.splitlines()):
+        
+        if len(yara_rules.match(data=line)) > 0:
+            
+            for match in yara_rules.match(data=line):
+                print(match.rule, match.strings, line, file.path)
+
         line_number = i + 1
         exclude_ids = [] if ignore_nosecret else _parse_nosecret(line)
         location = f"{file.path}:{line_number}"
+
 
         if MATCH_ALL_RULE_IDS in exclude_ids:
             log.info(f"nosecret: skipping {location}")
             continue
 
         for rule in rules:
+            
             if rule.id.lower() in exclude_ids:
                 log.info(f"nosecret: skipping {rule.id} in {location}")
                 continue

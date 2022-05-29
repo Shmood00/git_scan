@@ -1,0 +1,4347 @@
+[
+  {
+    "url": "https://github.com/trufflesecurity/trufflehog",
+    "issues": [
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "25",
+        "secret": "AKIA2E0A8F3B244C9986",
+        "context": {
+          "25": "+\t\t\t\t\"8fe6f04ef1839e3fc54b5147e3d0e0b7ab971bd5-aws\":   {B: []byte(\"+blah blaj \\n+ \\n+this is the secret: AKIA2E0A8F3B244C9986 \\n+ \\n+okay thank you bye\\n\"), Multi: true},"
+        },
+        "id": "1c843567-a1c8-39a2-8550-7aa7cd67853d",
+        "branch": "main",
+        "message": "Use .Line to reduce diff strangeness (#380)",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "af979d46202da8f3f24a8a626dfb3d529b405295",
+        "date": "2022-04-11T16:38:08-07:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "setup.py",
+        "line": "12",
+        "secret": "author_email='dxa4481@rit.edu",
+        "context": {
+          "12": "     author_email='dxa4481@rit.edu',"
+        },
+        "id": "28f1812d-7fd6-3548-9f5e-4180211d0a1a",
+        "branch": "paths",
+        "message": "fixing weird variable scoping issue",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "2c2e2b4fe2bf07fcf0994addeac57b150dd40018",
+        "date": "2018-01-29T06:08:47-08:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "236",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "236": "\t\t\t\t\"90c75f884c65dc3638ca1610bd9844e668f213c2-aws\":   {B: []byte(\"this is the secret: [Default]\\nAccess key Id: AKIAILE3JG6KMS3HZGCA\\nSecret Access Key: 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\\n\"), Multi: true},"
+        },
+        "id": "43b23fe6-083b-3775-957e-f8b943de1b3e",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": ".github/workflows/test.yml",
+        "line": "19",
+        "secret": "'github-ci-external@trufflehog-testing.iam.gserviceaccount.com",
+        "context": {
+          "19": "         service_account: 'github-ci-external@trufflehog-testing.iam.gserviceaccount.com'"
+        },
+        "id": "b9b32256-8d42-370f-94a7-ee26bfea6775",
+        "branch": "main",
+        "message": "separate detector tests",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "f7dca85d2d3344b727ea6996ffcf99075637b8a4",
+        "date": "2022-02-15T18:54:47-08:00"
+      },
+      {
+        "rule": {
+          "id": "generic.secret",
+          "message": "Generic Secret",
+          "pattern": "[s|S][e|E][c|C][r|R][e|E][t|T].*['|\"][0-9a-zA-Z]{32,45}['|\"]",
+          "severity": "LOW"
+        },
+        "path": "test_all.py",
+        "line": "19",
+        "secret": "secret = '9ed54617547cfca783e0f81f8dc5c927e3d1e345'",
+        "context": {
+          "19": "-        commit_w_secret = '9ed54617547cfca783e0f81f8dc5c927e3d1e345'"
+        },
+        "id": "d6aa22b6-31c0-3906-9456-b2c59f19c319",
+        "branch": "paths",
+        "message": "Added a test case to ensure the correct commitHash is returned (includes a commit comment cross-validation)",
+        "author": "Jeckelmann Manuel <Manuel.Jeckelmann@swisscom.com>",
+        "commit": "59b59ef81ce6efb9f96edce07cd3fc0e2f5e7003",
+        "date": "2018-06-11T18:16:34+02:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "README.md",
+        "line": "9",
+        "secret": "-----BEGIN EC PRIVATE KEY-----",
+        "context": {
+          "9": "-    \"RSA private key\": \"-----BEGIN EC PRIVATE KEY-----\""
+        },
+        "id": "17b20482-12f2-3cd3-9013-cc95fb47b5ea",
+        "branch": "paths",
+        "message": "Update README.md",
+        "author": "Dylan Ayrey <dxa4481@rit.edu>",
+        "commit": "9def4f5eb76dc43c8d68b40940a473546b71c97a",
+        "date": "2018-05-06T10:07:07-07:00"
+      },
+      {
+        "rule": {
+          "id": "generic.password-in-url",
+          "message": "Password in URL",
+          "pattern": "[a-zA-Z]{3,10}://[^/\\s:@]{3,20}:[^/\\s:@]{3,20}@.{1,100}[\"'\\s]",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/uri/uri_test.go",
+        "line": "76",
+        "secret": "file://user:pass@foo.com:123/wh/at/ever\"",
+        "context": {
+          "76": "\t\t\t\tdata:   []byte(\"file://user:pass@foo.com:123/wh/at/ever\"),"
+        },
+        "id": "83767f99-fff1-3c1e-97a7-1512db468a0a",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "action.yml",
+        "line": "3",
+        "secret": "support@trufflesec.com",
+        "context": {
+          "3": "author: Truffle Security Co. <support@trufflesec.com>"
+        },
+        "id": "c7043a74-3145-32e0-83db-86ffee970d41",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/kickbox/kickbox.go",
+        "line": "9",
+        "secret": "//api.kickbox.com/v2/verify?email=kickbox@example.com",
+        "context": {
+          "9": "+\t\t\treq, _ := http.NewRequestWithContext(ctx, \"GET\", \"https://api.kickbox.com/v2/verify?email=kickbox@example.com&apikey=\"+resMatch, nil)"
+        },
+        "id": "4367f7ff-a724-3883-a98b-c3314d87d9e6",
+        "branch": "main",
+        "message": "check request errors",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "99372694ca89261e0ee03b2d3b09226ad080b339",
+        "date": "2022-03-23T16:42:34-07:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/debounce/debounce.go",
+        "line": "5",
+        "secret": "&email=some@gmail.com",
+        "context": {
+          "5": "-\t\t\treq, err := http.NewRequestWithContext(ctx, \"GET\", \"https://api.debounce.io/v1/?api=\"+resMatch+\"&email=some@gmail.com\", nil)"
+        },
+        "id": "01631f41-0575-393d-99bb-0773ec3f556c",
+        "branch": "main",
+        "message": "check request errors",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "99372694ca89261e0ee03b2d3b09226ad080b339",
+        "date": "2022-03-23T16:42:34-07:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/delighted/delighted.go",
+        "line": "2",
+        "secret": "jony@appleseed.com",
+        "context": {
+          "2": " \t\t\t\t\"email\": \"jony@appleseed.com\","
+        },
+        "id": "eee6e07b-3cc0-3878-b98c-35435f698e7a",
+        "branch": "main",
+        "message": "check request errors",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "99372694ca89261e0ee03b2d3b09226ad080b339",
+        "date": "2022-03-23T16:42:34-07:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/uri/uri_test.go",
+        "line": "66",
+        "secret": "**********@www.httpwatch.com",
+        "context": {
+          "66": "\t\t\t\t\tRedacted:     \"https://httpwatch:**********@www.httpwatch.com/httpgallery/authentication/authenticatedimage/default.aspx\","
+        },
+        "id": "d48d3c39-37db-34f7-a4fe-b5094126aefa",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/engine/git_test.go",
+        "line": "48",
+        "secret": "AKIAXYZDQCEN4B6JSJQI",
+        "context": {
+          "48": "\t\t\t\t\"70001020fab32b1fcf2f1f0e5c66424eae649826\": {\"AKIAXYZDQCEN4B6JSJQI\", 2},"
+        },
+        "id": "9328ef1b-cd6c-32dc-acb5-b958de816147",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/kickbox/kickbox.go",
+        "line": "5",
+        "secret": "//api.kickbox.com/v2/verify?email=kickbox@example.com",
+        "context": {
+          "5": "-\t\t\treq, _ := http.NewRequestWithContext(ctx, \"GET\", \"https://api.kickbox.com/v2/verify?email=kickbox@example.com&apikey=\"+resMatch, nil)"
+        },
+        "id": "4367f7ff-a724-3883-a98b-c3314d87d9e6",
+        "branch": "main",
+        "message": "Add context timeout to scanners",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "79496b81427a33db4580fc8a2f4160e78bf336fe",
+        "date": "2022-02-15T18:54:47-08:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "scripts/searchOrg.py",
+        "line": "12",
+        "secret": "-----BEGIN DSA PRIVATE KEY-----",
+        "context": {
+          "12": "+    \"SSH (DSA) private key\": \"-----BEGIN DSA PRIVATE KEY-----\","
+        },
+        "id": "d7080f65-9b44-3e5b-a47a-8c149d26e9e6",
+        "branch": "paths",
+        "message": "typo",
+        "author": "Maximilian Roos <5635139+max-sixty@users.noreply.github.com>",
+        "commit": "fc24b2567fb71e51345b3f611ed6eeb815440407",
+        "date": "2018-12-06T18:27:58-05:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "16",
+        "secret": "AKIAXYZDQCEN4B6JSJQI",
+        "context": {
+          "16": "+\t\t\t\t\"70001020fab32b1fcf2f1f0e5c66424eae649826-aws\":   {B: []byte(\"+[default] \\n+aws_access_key_id = AKIAXYZDQCEN4B6JSJQI \\n+aws_secret_access_key = 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 \\n+output = json \\n+region = us-east-2 \\n\")},"
+        },
+        "id": "30325b83-51a2-3b4f-8ef4-8d573368d8d8",
+        "branch": "main",
+        "message": "Use .Line to reduce diff strangeness (#380)",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "af979d46202da8f3f24a8a626dfb3d529b405295",
+        "date": "2022-04-11T16:38:08-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "README.md",
+        "line": "8",
+        "secret": "-----BEGIN EC PRIVATE KEY-----",
+        "context": {
+          "8": "-    \"local self signed test key\": \"-----BEGIN EC PRIVATE KEY-----\\nfoobar123\\n-----END EC PRIVATE KEY-----\","
+        },
+        "id": "17b20482-12f2-3cd3-9013-cc95fb47b5ea",
+        "branch": "v2",
+        "message": "Add allow list for known secrets (#223)\n\n* Include allow list\r\n\r\n* Make newlines in allow list flexible\r\n\r\n* Allow literals as well as regex in allow list\r\n\r\n* Fix flexible newline regex\r\n\r\n* Escape ALL THE THINGS\r\n\r\n* Detect \"\\<cr>\" and \"\\<lf>\", simplify newline regex, allow diff chars after newlines\r\n\r\n- re.escape also puts `\\` in front of `<cr>` and `<lf>`, so account for that in the replacement.\r\n- simplify newline replacement regex (and make slightly more flexible)\r\n- detect leading + / - at start of diff lines",
+        "author": "David Evans <davidje13@users.noreply.github.com>",
+        "commit": "caa709db5b599dbe67afbad2eee4ae632cc3c12e",
+        "date": "2021-01-30T10:38:57-08:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "22",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "22": "-\t\t\t\t\"84e9c75e388ae3e866e121087ea2dd45a71068f2-aws\":   {B: []byte(\"blah blaj\\n\\nthis is the secret: [Default]\\nAccess key Id: AKIAILE3JG6KMS3HZGCA\\nSecret Access Key: 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\\n\\nokay thank you bye\\n\")},"
+        },
+        "id": "b40233a1-ecfb-3f05-8f4b-bc1a6490f46c",
+        "branch": "main",
+        "message": "Match expected chunks to actual",
+        "author": "Bill Rich <bill.rich@trufflesec.com>",
+        "commit": "6b183424f568b9c257306883232ee1fd0268f32d",
+        "date": "2022-02-15T18:54:47-08:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/programmingbooks.txt",
+        "line": "1243",
+        "secret": "gg@allin.com",
+        "context": {
+          "1243": "gg@allin.com"
+        },
+        "id": "449e0853-9a1e-3397-9651-d47391cfa20d",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "4",
+        "secret": "AKIAXYZDQCEN4B6JSJQI",
+        "context": {
+          "4": " \t\t\t\t\"70001020fab32b1fcf2f1f0e5c66424eae649826-aws\":   {B: []byte(\"[default]\\naws_access_key_id = AKIAXYZDQCEN4B6JSJQI\\naws_secret_access_key = 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\\noutput = json\\nregion = us-east-2\\n\")},"
+        },
+        "id": "3086243d-d2d6-372b-a2a8-f9a90f065422",
+        "branch": "main",
+        "message": "Match expected chunks to actual",
+        "author": "Bill Rich <bill.rich@trufflesec.com>",
+        "commit": "6b183424f568b9c257306883232ee1fd0268f32d",
+        "date": "2022-02-15T18:54:47-08:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "scripts/searchOrg.py",
+        "line": "11",
+        "secret": "-----BEGIN OPENSSH PRIVATE KEY-----",
+        "context": {
+          "11": "+    \"SSH (OPENSSH) private key\": \"-----BEGIN OPENSSH PRIVATE KEY-----\","
+        },
+        "id": "956b6c29-1ccf-3454-a678-560fd0be89c5",
+        "branch": "paths",
+        "message": "typo",
+        "author": "Maximilian Roos <5635139+max-sixty@users.noreply.github.com>",
+        "commit": "fc24b2567fb71e51345b3f611ed6eeb815440407",
+        "date": "2018-12-06T18:27:58-05:00"
+      },
+      {
+        "rule": {
+          "id": "generic.password-in-url",
+          "message": "Password in URL",
+          "pattern": "[a-zA-Z]{3,10}://[^/\\s:@]{3,20}:[^/\\s:@]{3,20}@.{1,100}[\"'\\s]",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/uri/uri_test.go",
+        "line": "49",
+        "secret": "https://user:**********@www.httpwatch.com/httpgallery/authentication/authenticatedimage/default.aspx\"",
+        "context": {
+          "49": "\t\t\t\t\tRedacted:     \"https://user:**********@www.httpwatch.com/httpgallery/authentication/authenticatedimage/default.aspx\","
+        },
+        "id": "f339d3a3-7e1e-3108-a0a3-abe7a0840bef",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "private.pgp-key",
+          "message": "PGP Private Key Block",
+          "pattern": "-----BEGIN PGP PRIVATE KEY BLOCK-----",
+          "severity": "HIGH"
+        },
+        "path": "truffleHog/regexChecks.py",
+        "line": "12",
+        "secret": "-----BEGIN PGP PRIVATE KEY BLOCK-----",
+        "context": {
+          "12": "-    \"PGP private key block\": re.compile('-----BEGIN PGP PRIVATE KEY BLOCK-----'),"
+        },
+        "id": "b17ecacb-7a9f-3a3f-9af7-bdd0f86715a1",
+        "branch": "paths",
+        "message": "Update regexChecks.py",
+        "author": "Chris Gates <chris@carnal0wnage.com>",
+        "commit": "b6073aafed119255301571cf8ff1ea43ede87c95",
+        "date": "2017-12-08T11:38:45-05:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "CODE_OF_CONDUCT.md",
+        "line": "6",
+        "secret": "dxa4481@rit.edu",
+        "context": {
+          "6": "+reported by contacting the project team at dxa4481@rit.edu. All"
+        },
+        "id": "556e2c1e-d2d0-33ad-82d3-14aae371bd0a",
+        "branch": "v2-dev",
+        "message": "Update CODE_OF_CONDUCT.md",
+        "author": "Dylan Ayrey <dxa4481@rit.edu>",
+        "commit": "912141d887bb348aed289ed915a7974422f9f556",
+        "date": "2021-06-23T10:17:50-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "5",
+        "secret": "AKIAXYZDQCEN4B6JSJQI",
+        "context": {
+          "5": "-\t\t\t\t\"70001020fab32b1fcf2f1f0e5c66424eae649826-aws\":   {B: []byte(\"+[default]\\n+aws_access_key_id = AKIAXYZDQCEN4B6JSJQI\\n+aws_secret_access_key = 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\\n+output = json\\n+region = us-east-2\\n\")},"
+        },
+        "id": "30325b83-51a2-3b4f-8ef4-8d573368d8d8",
+        "branch": "main",
+        "message": "Use gitleaks git cmd stream (#75)\n\n* Switch to git cmd stream\r\n\r\n* Fix rebase issues",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "0ee34a5be6702e1526031de68a69c3ec0806a9b0",
+        "date": "2022-03-14T17:12:58-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "truffleHog/regexChecks.py",
+        "line": "11",
+        "secret": "-----BEGIN OPENSSH PRIVATE KEY-----",
+        "context": {
+          "11": "     \"SSH (OPENSSH) private key\": re.compile('-----BEGIN OPENSSH PRIVATE KEY-----'),"
+        },
+        "id": "e1a168d1-30a8-3b04-a755-f8b1143e1beb",
+        "branch": "paths",
+        "message": "updating regex checks",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "94c6d085bc2db0ab0ed7d8c13a4401001ed00777",
+        "date": "2017-12-10T12:56:38-08:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "21",
+        "secret": "AKIA2E0A8F3B244C9986",
+        "context": {
+          "21": " \t\t\t\t\"8fe6f04ef1839e3fc54b5147e3d0e0b7ab971bd5-aws\":   {B: []byte(\"blah blaj\\n\\nthis is the secret: AKIA2E0A8F3B244C9986\\n\\nokay thank you bye\")},"
+        },
+        "id": "221352a8-4663-3c39-a868-b05e2282d84e",
+        "branch": "main",
+        "message": "Match expected chunks to actual",
+        "author": "Bill Rich <bill.rich@trufflesec.com>",
+        "commit": "6b183424f568b9c257306883232ee1fd0268f32d",
+        "date": "2022-02-15T18:54:47-08:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "truffleHog/regexChecks.py",
+        "line": "11",
+        "secret": "-----BEGIN EC PRIVATE KEY-----",
+        "context": {
+          "11": "+    \"SSH (EC) private key\": re.compile('-----BEGIN EC PRIVATE KEY-----'),"
+        },
+        "id": "b0a0eab1-0fdf-3b56-929c-dd11c4f7ffdc",
+        "branch": "paths",
+        "message": "Add coverage",
+        "author": "Stephen <stephen@egroat.com>",
+        "commit": "bbb1392f94ddf21ae18bce19f63f5abb309657c7",
+        "date": "2017-12-10T11:25:01-08:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "5",
+        "secret": "AKIAXYZDQCEN4B6JSJQI",
+        "context": {
+          "5": "-\t\t\t\t\"70001020fab32b1fcf2f1f0e5c66424eae649826-aws\":   {B: []byte(\"[default]\\naws_access_key_id = AKIAXYZDQCEN4B6JSJQI\\naws_secret_access_key = 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\\noutput = json\\nregion = us-east-2\\n\")},"
+        },
+        "id": "30325b83-51a2-3b4f-8ef4-8d573368d8d8",
+        "branch": "main",
+        "message": "Use .Line to reduce diff strangeness (#380)",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "af979d46202da8f3f24a8a626dfb3d529b405295",
+        "date": "2022-04-11T16:38:08-07:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": ".github/workflows/test.yml",
+        "line": "42",
+        "secret": "'github-ci-external@trufflehog-testing.iam.gserviceaccount.com",
+        "context": {
+          "42": "-        service_account: 'github-ci-external@trufflehog-testing.iam.gserviceaccount.com'"
+        },
+        "id": "b9b32256-8d42-370f-94a7-ee26bfea6775",
+        "branch": "main",
+        "message": "separate detector tests",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "f7dca85d2d3344b727ea6996ffcf99075637b8a4",
+        "date": "2022-02-15T18:54:47-08:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "14",
+        "secret": "AKIA2E0A8F3B244C9986",
+        "context": {
+          "14": "-\t\t\t\t\"8fe6f04ef1839e3fc54b5147e3d0e0b7ab971bd5-aws\":   {B: []byte(\"blah blaj\\n\\nthis is the secret: AKIA2E0A8F3B244C9986\\n\\nokay thank you bye\"), Multi: true},"
+        },
+        "id": "1c843567-a1c8-39a2-8550-7aa7cd67853d",
+        "branch": "main",
+        "message": "Use .Line to reduce diff strangeness (#380)",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "af979d46202da8f3f24a8a626dfb3d529b405295",
+        "date": "2022-04-11T16:38:08-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "33",
+        "secret": "AKIA2E0A8F3B244C9986",
+        "context": {
+          "33": "+\t\t\t\t\"8fe6f04ef1839e3fc54b5147e3d0e0b7ab971bd5-aws\":   {B: []byte(\"+blah blaj\\n+\\n+this is the secret: AKIA2E0A8F3B244C9986\\n+\\n+okay thank you bye\")},"
+        },
+        "id": "1c843567-a1c8-39a2-8550-7aa7cd67853d",
+        "branch": "main",
+        "message": "Include line numbers in git metadata (#97)\n\n* Include line numbers in git metadata\r\n\r\n* Update tests for fragments and line numbers",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "c2b4f0bc39aa8dd92372ed066040c8289b2703a2",
+        "date": "2022-03-22T09:27:15-07:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "CODE_OF_CONDUCT.md",
+        "line": "59",
+        "secret": "dxa4481@rit.edu",
+        "context": {
+          "59": "+reported by contacting the project team at dxa4481@rit.edu. All"
+        },
+        "id": "556e2c1e-d2d0-33ad-82d3-14aae371bd0a",
+        "branch": "v2",
+        "message": "fixing #246",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "4b918c110f64bbe17b302f05e9e209cea4819244",
+        "date": "2021-02-04T22:26:22-08:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/engine/git_test.go",
+        "line": "6",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "6": "+\t\t\t\t\"84e9c75e388ae3e866e121087ea2dd45a71068f2\": \"AKIAILE3JG6KMS3HZGCA\","
+        },
+        "id": "02d7cdf6-e597-318a-b85e-56880882064a",
+        "branch": "main",
+        "message": "Use gitleaks git cmd stream (#75)\n\n* Switch to git cmd stream\r\n\r\n* Fix rebase issues",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "0ee34a5be6702e1526031de68a69c3ec0806a9b0",
+        "date": "2022-03-14T17:12:58-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "14",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "14": "+\t\t\t\t\"90c75f884c65dc3638ca1610bd9844e668f213c2-aws\":   {B: []byte(\"this is the secret: [Default]\\nAccess key Id: AKIAILE3JG6KMS3HZGCA\\nSecret Access Key: 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\\nokay thank you bye\\n\")},"
+        },
+        "id": "b40233a1-ecfb-3f05-8f4b-bc1a6490f46c",
+        "branch": "main",
+        "message": "Match expected chunks to actual",
+        "author": "Bill Rich <bill.rich@trufflesec.com>",
+        "commit": "6b183424f568b9c257306883232ee1fd0268f32d",
+        "date": "2022-02-15T18:54:47-08:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "14",
+        "secret": "AKIA2E0A8F3B244C9986",
+        "context": {
+          "14": "-\t\t\t\t\"8fe6f04ef1839e3fc54b5147e3d0e0b7ab971bd5-aws\":   {B: []byte(\"+blah blaj\\n+\\n+this is the secret: AKIA2E0A8F3B244C9986\\n+\\n+okay thank you bye\")},"
+        },
+        "id": "221352a8-4663-3c39-a868-b05e2282d84e",
+        "branch": "main",
+        "message": "Use gitleaks git cmd stream (#75)\n\n* Switch to git cmd stream\r\n\r\n* Fix rebase issues",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "0ee34a5be6702e1526031de68a69c3ec0806a9b0",
+        "date": "2022-03-14T17:12:58-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/engine/git_test.go",
+        "line": "32",
+        "secret": "AKIAXYZDQCEN4B6JSJQI",
+        "context": {
+          "32": "+\t\t\t\t\"70001020fab32b1fcf2f1f0e5c66424eae649826\": \"AKIAXYZDQCEN4B6JSJQI\","
+        },
+        "id": "9328ef1b-cd6c-32dc-acb5-b958de816147",
+        "branch": "main",
+        "message": "Include line numbers in git metadata (#97)\n\n* Include line numbers in git metadata\r\n\r\n* Update tests for fragments and line numbers",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "c2b4f0bc39aa8dd92372ed066040c8289b2703a2",
+        "date": "2022-03-22T09:27:15-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "13",
+        "secret": "AKIAXYZDQCEN4B6JSJQI",
+        "context": {
+          "13": "-\t\t\t\t\"70001020fab32b1fcf2f1f0e5c66424eae649826-aws\":   {B: []byte(\"+[default] \\n+aws_access_key_id = AKIAXYZDQCEN4B6JSJQI \\n+aws_secret_access_key = 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 \\n+output = json \\n+region = us-east-2 \\n\")},"
+        },
+        "id": "3086243d-d2d6-372b-a2a8-f9a90f065422",
+        "branch": "main",
+        "message": "Include line numbers in git metadata (#97)\n\n* Include line numbers in git metadata\r\n\r\n* Update tests for fragments and line numbers",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "c2b4f0bc39aa8dd92372ed066040c8289b2703a2",
+        "date": "2022-03-22T09:27:15-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "scripts/searchOrg.py",
+        "line": "10",
+        "secret": "-----BEGIN RSA PRIVATE KEY-----",
+        "context": {
+          "10": "+    \"RSA private key\": \"-----BEGIN RSA PRIVATE KEY-----\","
+        },
+        "id": "298c4013-aa01-3863-8689-8cccebe141d0",
+        "branch": "paths",
+        "message": "typo",
+        "author": "Maximilian Roos <5635139+max-sixty@users.noreply.github.com>",
+        "commit": "fc24b2567fb71e51345b3f611ed6eeb815440407",
+        "date": "2018-12-06T18:27:58-05:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "235",
+        "secret": "AKIA2E0A8F3B244C9986",
+        "context": {
+          "235": "\t\t\t\t\"8fe6f04ef1839e3fc54b5147e3d0e0b7ab971bd5-aws\":   {B: []byte(\"blah blaj\\n\\nthis is the secret: AKIA2E0A8F3B244C9986\\n\\nokay thank you bye\"), Multi: true},"
+        },
+        "id": "1c843567-a1c8-39a2-8550-7aa7cd67853d",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "23",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "23": "-\t\t\t\t\"90c75f884c65dc3638ca1610bd9844e668f213c2-aws\":   {B: []byte(\"+this is the secret: [Default] \\n+Access key Id: AKIAILE3JG6KMS3HZGCA \\n+Secret Access Key: 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 \\n\"), Multi: true},"
+        },
+        "id": "b40233a1-ecfb-3f05-8f4b-bc1a6490f46c",
+        "branch": "main",
+        "message": "Include line numbers in git metadata (#97)\n\n* Include line numbers in git metadata\r\n\r\n* Update tests for fragments and line numbers",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "c2b4f0bc39aa8dd92372ed066040c8289b2703a2",
+        "date": "2022-03-22T09:27:15-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "23",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "23": "-\t\t\t\t\"90c75f884c65dc3638ca1610bd9844e668f213c2-aws\":   {B: []byte(\"+this is the secret: [Default] \\n+Access key Id: AKIAILE3JG6KMS3HZGCA \\n+Secret Access Key: 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 \\n\"), Multi: true},"
+        },
+        "id": "43b23fe6-083b-3775-957e-f8b943de1b3e",
+        "branch": "main",
+        "message": "Include line numbers in git metadata (#97)\n\n* Include line numbers in git metadata\r\n\r\n* Update tests for fragments and line numbers",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "c2b4f0bc39aa8dd92372ed066040c8289b2703a2",
+        "date": "2022-03-22T09:27:15-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "16",
+        "secret": "AKIAXYZDQCEN4B6JSJQI",
+        "context": {
+          "16": "+\t\t\t\t\"70001020fab32b1fcf2f1f0e5c66424eae649826-aws\":   {B: []byte(\"[default]\\naws_access_key_id = AKIAXYZDQCEN4B6JSJQI\\naws_secret_access_key = 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\\noutput = json\\nregion = us-east-2\\n\")},"
+        },
+        "id": "3086243d-d2d6-372b-a2a8-f9a90f065422",
+        "branch": "main",
+        "message": "Use gitleaks git cmd stream (#75)\n\n* Switch to git cmd stream\r\n\r\n* Fix rebase issues",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "0ee34a5be6702e1526031de68a69c3ec0806a9b0",
+        "date": "2022-03-14T17:12:58-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "scripts/searchOrg.py",
+        "line": "11",
+        "secret": "-----BEGIN OPENSSH PRIVATE KEY-----",
+        "context": {
+          "11": "+    \"SSH (OPENSSH) private key\": \"-----BEGIN OPENSSH PRIVATE KEY-----\","
+        },
+        "id": "956b6c29-1ccf-3454-a678-560fd0be89c5",
+        "branch": "paths",
+        "message": "Merge pull request #135 from max-sixty/patch-1\n\nBenifit -> Benefit",
+        "author": "Dylan Ayrey <dxa4481@rit.edu>",
+        "commit": "a4c69fa2f6b256bfe824ac82b96c77eb8c06b2d0",
+        "date": "2018-12-16T22:21:16-08:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "truffleHog/regexChecks.py",
+        "line": "8",
+        "secret": "-----BEGIN RSA PRIVATE KEY-----",
+        "context": {
+          "8": "     \"RSA private key\": re.compile('-----BEGIN RSA PRIVATE KEY-----'),"
+        },
+        "id": "4abedba9-4cc3-3953-85f9-714bc7a774e1",
+        "branch": "paths",
+        "message": "Add coverage",
+        "author": "Stephen <stephen@egroat.com>",
+        "commit": "bbb1392f94ddf21ae18bce19f63f5abb309657c7",
+        "date": "2017-12-10T11:25:01-08:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "truffleHog/regexChecks.py",
+        "line": "10",
+        "secret": "-----BEGIN DSA PRIVATE KEY-----",
+        "context": {
+          "10": "+    \"SSH (DSA) private key\": re.compile('-----BEGIN DSA PRIVATE KEY-----'),"
+        },
+        "id": "9843276d-35d8-3435-bc52-9b9a75cd703c",
+        "branch": "paths",
+        "message": "Add coverage",
+        "author": "Stephen <stephen@egroat.com>",
+        "commit": "bbb1392f94ddf21ae18bce19f63f5abb309657c7",
+        "date": "2017-12-10T11:25:01-08:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/engine/git_test.go",
+        "line": "39",
+        "secret": "AKIAXYZDQCEN4B6JSJQI",
+        "context": {
+          "39": "\t\t\t\t\"70001020fab32b1fcf2f1f0e5c66424eae649826\": {\"AKIAXYZDQCEN4B6JSJQI\", 2},"
+        },
+        "id": "9328ef1b-cd6c-32dc-acb5-b958de816147",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "22",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "22": "-\t\t\t\t\"84e9c75e388ae3e866e121087ea2dd45a71068f2-aws\":   {B: []byte(\"blah blaj\\n\\nthis is the secret: [Default]\\nAccess key Id: AKIAILE3JG6KMS3HZGCA\\nSecret Access Key: 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\\n\\nokay thank you bye\\n\")},"
+        },
+        "id": "43b23fe6-083b-3775-957e-f8b943de1b3e",
+        "branch": "main",
+        "message": "Match expected chunks to actual",
+        "author": "Bill Rich <bill.rich@trufflesec.com>",
+        "commit": "6b183424f568b9c257306883232ee1fd0268f32d",
+        "date": "2022-02-15T18:54:47-08:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/engine/git_test.go",
+        "line": "39",
+        "secret": "AKIAXYZDQCEN4B6JSJQI",
+        "context": {
+          "39": "\t\t\t\t\"70001020fab32b1fcf2f1f0e5c66424eae649826\": {\"AKIAXYZDQCEN4B6JSJQI\", 2},"
+        },
+        "id": "fd79ee91-2fc2-3651-8ac3-451f6913b45e",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "pkg/detectors/privatekey/cracker_test.go",
+        "line": "5",
+        "secret": "-----BEGIN OPENSSH PRIVATE KEY-----",
+        "context": {
+          "5": "-\ttestEncryptedKey                  = []byte(normalize(`-----BEGIN OPENSSH PRIVATE KEY-----"
+        },
+        "id": "5ef93008-85d2-35b6-bc6f-3437b77c65a8",
+        "branch": "main",
+        "message": "improvements",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "c20e9f4732060372866ff804b1ee96676839f722",
+        "date": "2022-03-04T08:39:17-08:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/engine/git_test.go",
+        "line": "28",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "28": "-\t\t\t\t\"90c75f884c65dc3638ca1610bd9844e668f213c2\": {\"AKIAILE3JG6KMS3HZGCA\", 4},"
+        },
+        "id": "d51ec4dc-d998-3fba-afb6-307d4dc50341",
+        "branch": "main",
+        "message": "Include line numbers in git metadata (#97)\n\n* Include line numbers in git metadata\r\n\r\n* Update tests for fragments and line numbers",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "c2b4f0bc39aa8dd92372ed066040c8289b2703a2",
+        "date": "2022-03-22T09:27:15-07:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/kickbox/kickbox.go",
+        "line": "50",
+        "secret": "//api.kickbox.com/v2/verify?email=kickbox@example.com",
+        "context": {
+          "50": "\t\t\treq, err := http.NewRequestWithContext(ctx, \"GET\", \"https://api.kickbox.com/v2/verify?email=kickbox@example.com&apikey=\"+resMatch, nil)"
+        },
+        "id": "4367f7ff-a724-3883-a98b-c3314d87d9e6",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "scripts/searchOrg.py",
+        "line": "13",
+        "secret": "-----BEGIN EC PRIVATE KEY-----",
+        "context": {
+          "13": "+    \"SSH (EC) private key\": \"-----BEGIN EC PRIVATE KEY-----\","
+        },
+        "id": "8c2f03ed-0184-3962-bc32-a793b88741e8",
+        "branch": "paths",
+        "message": "Merge pull request #135 from max-sixty/patch-1\n\nBenifit -> Benefit",
+        "author": "Dylan Ayrey <dxa4481@rit.edu>",
+        "commit": "a4c69fa2f6b256bfe824ac82b96c77eb8c06b2d0",
+        "date": "2018-12-16T22:21:16-08:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "truffleHog/regexChecks.py",
+        "line": "11",
+        "secret": "-----BEGIN EC PRIVATE KEY-----",
+        "context": {
+          "11": "-    \"SSH (EC) private key\": re.compile('-----BEGIN EC PRIVATE KEY-----'),"
+        },
+        "id": "b0a0eab1-0fdf-3b56-929c-dd11c4f7ffdc",
+        "branch": "paths",
+        "message": "Update regexChecks.py",
+        "author": "Chris Gates <chris@carnal0wnage.com>",
+        "commit": "b6073aafed119255301571cf8ff1ea43ede87c95",
+        "date": "2017-12-08T11:38:45-05:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/uri/uri_test.go",
+        "line": "49",
+        "secret": "**********@www.httpwatch.com",
+        "context": {
+          "49": "\t\t\t\t\tRedacted:     \"https://user:**********@www.httpwatch.com/httpgallery/authentication/authenticatedimage/default.aspx\","
+        },
+        "id": "d48d3c39-37db-34f7-a4fe-b5094126aefa",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "private.pgp-key",
+          "message": "PGP Private Key Block",
+          "pattern": "-----BEGIN PGP PRIVATE KEY BLOCK-----",
+          "severity": "HIGH"
+        },
+        "path": "truffleHog/defaultRegexes/regexChecks.py",
+        "line": "11",
+        "secret": "-----BEGIN PGP PRIVATE KEY BLOCK-----",
+        "context": {
+          "11": "+    \"PGP private key block\": re.compile('-----BEGIN PGP PRIVATE KEY BLOCK-----'),"
+        },
+        "id": "320eb04d-e0aa-39af-8a0f-2386382b25e6",
+        "branch": "paths",
+        "message": "Changing regexes to install regex package",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "58690fe2e89d0aef28ae313c8554941104071bb1",
+        "date": "2018-04-14T10:26:10-07:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/delighted/delighted.go",
+        "line": "55",
+        "secret": "jony@appleseed.com",
+        "context": {
+          "55": "\t\t\t\t\"email\": \"jony@appleseed.com\","
+        },
+        "id": "eee6e07b-3cc0-3878-b98c-35435f698e7a",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "generic.secret",
+          "message": "Generic Secret",
+          "pattern": "[s|S][e|E][c|C][r|R][e|E][t|T].*['|\"][0-9a-zA-Z]{32,45}['|\"]",
+          "severity": "LOW"
+        },
+        "path": "test_all.py",
+        "line": "19",
+        "secret": "secret = '9ed54617547cfca783e0f81f8dc5c927e3d1e345'",
+        "context": {
+          "19": "-        commit_w_secret = '9ed54617547cfca783e0f81f8dc5c927e3d1e345'"
+        },
+        "id": "d6aa22b6-31c0-3906-9456-b2c59f19c319",
+        "branch": "paths",
+        "message": "Merge branch 'dev' into bugfix/wrong-commit-hash",
+        "author": "Dylan Ayrey <dxa4481@rit.edu>",
+        "commit": "2e064ae3275a44f9b382c3d0cb5fedff72105942",
+        "date": "2018-08-24T20:32:36-07:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/airbrakeprojectkey/airbrakeprojectkey.go",
+        "line": "3",
+        "secret": "john@smith.com",
+        "context": {
+          "3": " \t\t\t\tpayload := strings.NewReader(`{\"environment\":\"production\",\"username\":\"john\",\"email\":\"john@smith.com\",\"repository\":\"https://github.com/airbrake/airbrake\",\"revision\":\"38748467ea579e7ae64f7815452307c9d05e05c5\",\"version\":\"v2.0\"}`)"
+        },
+        "id": "f2081763-4068-3e06-a4e3-6ae5ef4e7393",
+        "branch": "main",
+        "message": "Add context timeout to scanners",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "79496b81427a33db4580fc8a2f4160e78bf336fe",
+        "date": "2022-02-15T18:54:47-08:00"
+      },
+      {
+        "rule": {
+          "id": "generic.secret",
+          "message": "Generic Secret",
+          "pattern": "[s|S][e|E][c|C][r|R][e|E][t|T].*['|\"][0-9a-zA-Z]{32,45}['|\"]",
+          "severity": "LOW"
+        },
+        "path": "test_all.py",
+        "line": "10",
+        "secret": "secret = 'd15627104d07846ac2914a976e8e347a663bbd9b'",
+        "context": {
+          "10": "-        commit_w_secret = 'd15627104d07846ac2914a976e8e347a663bbd9b'"
+        },
+        "id": "c655247d-2fff-3ebd-986f-d92d1fe6565c",
+        "branch": "v2",
+        "message": "Fixed since_commit and tests (#219)\n\n* Fixed since_commit and tests\r\n\r\n* Updated testing comment\r\n\r\nCo-authored-by: Dylan Ayrey <dxa4481@rit.edu>",
+        "author": "Doug Rickert <dmrickert@gmail.com>",
+        "commit": "288f35ed2e73145e3578207e896a4cf1600bea45",
+        "date": "2021-01-30T10:50:09-08:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "setup.py",
+        "line": "10",
+        "secret": "author_email='dxa4481@rit.edu",
+        "context": {
+          "10": "+    author_email='dxa4481@rit.edu',"
+        },
+        "id": "28f1812d-7fd6-3548-9f5e-4180211d0a1a",
+        "branch": "paths",
+        "message": "Leverage replacement character when decode of unrecognized character encoding encontered and stream-line Python 2+ header encoding",
+        "author": "CJ <cj@cjbarker.com>",
+        "commit": "664a8dde9f58569cf6e9cff6bedfb027cc16e34e",
+        "date": "2017-02-06T15:43:35-08:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/airbrakeprojectkey/airbrakeprojectkey.go",
+        "line": "3",
+        "secret": "john@smith.com",
+        "context": {
+          "3": " \t\t\t\tpayload := strings.NewReader(`{\"environment\":\"production\",\"username\":\"john\",\"email\":\"john@smith.com\",\"repository\":\"https://github.com/airbrake/airbrake\",\"revision\":\"38748467ea579e7ae64f7815452307c9d05e05c5\",\"version\":\"v2.0\"}`)"
+        },
+        "id": "f2081763-4068-3e06-a4e3-6ae5ef4e7393",
+        "branch": "main",
+        "message": "check request errors",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "99372694ca89261e0ee03b2d3b09226ad080b339",
+        "date": "2022-03-23T16:42:34-07:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/zerobounce/zerobounce.go",
+        "line": "51",
+        "secret": "//api.zerobounce.net/v1/activity?email=testemail@email.com",
+        "context": {
+          "51": "\t\t\treq, err := http.NewRequestWithContext(ctx, \"GET\", \"https://api.zerobounce.net/v1/activity?email=testemail@email.com&api_key=\"+resMatch, nil)"
+        },
+        "id": "e4799fda-e5e4-3e01-9875-82f2d2860278",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/delighted/delighted.go",
+        "line": "2",
+        "secret": "jony@appleseed.com",
+        "context": {
+          "2": " \t\t\t\t\"email\": \"jony@appleseed.com\","
+        },
+        "id": "eee6e07b-3cc0-3878-b98c-35435f698e7a",
+        "branch": "main",
+        "message": "Add context timeout to scanners",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "79496b81427a33db4580fc8a2f4160e78bf336fe",
+        "date": "2022-02-15T18:54:47-08:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/engine/git_test.go",
+        "line": "27",
+        "secret": "AKIAXYZDQCEN4B6JSJQI",
+        "context": {
+          "27": "-\t\t\t\t\"70001020fab32b1fcf2f1f0e5c66424eae649826\": {\"AKIAXYZDQCEN4B6JSJQI\", 2},"
+        },
+        "id": "9328ef1b-cd6c-32dc-acb5-b958de816147",
+        "branch": "main",
+        "message": "Include line numbers in git metadata (#97)\n\n* Include line numbers in git metadata\r\n\r\n* Update tests for fragments and line numbers",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "c2b4f0bc39aa8dd92372ed066040c8289b2703a2",
+        "date": "2022-03-22T09:27:15-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "15",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "15": "-\t\t\t\t\"90c75f884c65dc3638ca1610bd9844e668f213c2-aws\":   {B: []byte(\"+this is the secret: [Default]\\n+Access key Id: AKIAILE3JG6KMS3HZGCA\\n+Secret Access Key: 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\\n+okay thank you bye\\n\")},"
+        },
+        "id": "b40233a1-ecfb-3f05-8f4b-bc1a6490f46c",
+        "branch": "main",
+        "message": "Use gitleaks git cmd stream (#75)\n\n* Switch to git cmd stream\r\n\r\n* Fix rebase issues",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "0ee34a5be6702e1526031de68a69c3ec0806a9b0",
+        "date": "2022-03-14T17:12:58-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "pkg/detectors/privatekey/cracker_test.go",
+        "line": "6",
+        "secret": "-----BEGIN OPENSSH PRIVATE KEY-----",
+        "context": {
+          "6": "+\ttestEncryptedKey                  = []byte(normalize(string(`-----BEGIN OPENSSH PRIVATE KEY-----"
+        },
+        "id": "5ef93008-85d2-35b6-bc6f-3437b77c65a8",
+        "branch": "main",
+        "message": "improvements",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "c20e9f4732060372866ff804b1ee96676839f722",
+        "date": "2022-03-04T08:39:17-08:00"
+      },
+      {
+        "rule": {
+          "id": "private.pgp-key",
+          "message": "PGP Private Key Block",
+          "pattern": "-----BEGIN PGP PRIVATE KEY BLOCK-----",
+          "severity": "HIGH"
+        },
+        "path": "scripts/searchOrg.py",
+        "line": "14",
+        "secret": "-----BEGIN PGP PRIVATE KEY BLOCK-----",
+        "context": {
+          "14": "-    \"PGP private key block\": \"-----BEGIN PGP PRIVATE KEY BLOCK-----\","
+        },
+        "id": "8599eb65-868e-3216-8ee1-ec48864f4345",
+        "branch": "paths",
+        "message": "bumping requirements",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "355502852332d5efe3d9ec94682c77c662da8609",
+        "date": "2018-12-16T22:17:41-08:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/clearbit/clearbit.go",
+        "line": "9",
+        "secret": "//person.clearbit.com/v1/people/email/alex@alexmaccaw.com",
+        "context": {
+          "9": "+\t\t\treq, _ := http.NewRequestWithContext(ctx, \"GET\", \"https://person.clearbit.com/v1/people/email/alex@alexmaccaw.com\", nil)"
+        },
+        "id": "85cd08f2-4cda-3d04-8667-5a25a25487c3",
+        "branch": "main",
+        "message": "check request errors",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "99372694ca89261e0ee03b2d3b09226ad080b339",
+        "date": "2022-03-23T16:42:34-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "scripts/searchOrg.py",
+        "line": "13",
+        "secret": "-----BEGIN EC PRIVATE KEY-----",
+        "context": {
+          "13": "-    \"SSH (EC) private key\": \"-----BEGIN EC PRIVATE KEY-----\","
+        },
+        "id": "8c2f03ed-0184-3962-bc32-a793b88741e8",
+        "branch": "paths",
+        "message": "resolving merge conflicts",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "466cdc94b4fcb0acd1904726a9b4de5c26e9125d",
+        "date": "2019-05-05T22:47:40-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "24",
+        "secret": "AKIAXYZDQCEN4B6JSJQI",
+        "context": {
+          "24": "+\t\t\t\t\"70001020fab32b1fcf2f1f0e5c66424eae649826-aws\":   {B: []byte(\"+[default]\\n+aws_access_key_id = AKIAXYZDQCEN4B6JSJQI\\n+aws_secret_access_key = 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\\n+output = json\\n+region = us-east-2\\n\")},"
+        },
+        "id": "3086243d-d2d6-372b-a2a8-f9a90f065422",
+        "branch": "main",
+        "message": "Include line numbers in git metadata (#97)\n\n* Include line numbers in git metadata\r\n\r\n* Update tests for fragments and line numbers",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "c2b4f0bc39aa8dd92372ed066040c8289b2703a2",
+        "date": "2022-03-22T09:27:15-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "truffleHog/regexChecks.py",
+        "line": "13",
+        "secret": "-----BEGIN EC PRIVATE KEY-----",
+        "context": {
+          "13": "     \"SSH (EC) private key\": re.compile('-----BEGIN EC PRIVATE KEY-----'),"
+        },
+        "id": "b0a0eab1-0fdf-3b56-929c-dd11c4f7ffdc",
+        "branch": "paths",
+        "message": "updating regex checks",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "94c6d085bc2db0ab0ed7d8c13a4401001ed00777",
+        "date": "2017-12-10T12:56:38-08:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "scripts/searchOrg.py",
+        "line": "11",
+        "secret": "-----BEGIN OPENSSH PRIVATE KEY-----",
+        "context": {
+          "11": "-    \"SSH (OPENSSH) private key\": \"-----BEGIN OPENSSH PRIVATE KEY-----\","
+        },
+        "id": "956b6c29-1ccf-3454-a678-560fd0be89c5",
+        "branch": "paths",
+        "message": "modifying search org",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "3048c6429d80094b42fd44919e3d6768536178ce",
+        "date": "2018-09-29T09:21:15-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "5",
+        "secret": "AKIAXYZDQCEN4B6JSJQI",
+        "context": {
+          "5": "-\t\t\t\t\"70001020fab32b1fcf2f1f0e5c66424eae649826-aws\":   {B: []byte(\"+[default]\\n+aws_access_key_id = AKIAXYZDQCEN4B6JSJQI\\n+aws_secret_access_key = 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\\n+output = json\\n+region = us-east-2\\n\")},"
+        },
+        "id": "3086243d-d2d6-372b-a2a8-f9a90f065422",
+        "branch": "main",
+        "message": "Use gitleaks git cmd stream (#75)\n\n* Switch to git cmd stream\r\n\r\n* Fix rebase issues",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "0ee34a5be6702e1526031de68a69c3ec0806a9b0",
+        "date": "2022-03-14T17:12:58-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "26",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "26": "+\t\t\t\t\"84e9c75e388ae3e866e121087ea2dd45a71068f2-aws\":   {B: []byte(\"blah blaj\\n\\nthis is the secret: [Default]\\nAccess key Id: AKIAILE3JG6KMS3HZGCA\\nSecret Access Key: 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\\n\\nokay thank you bye\\n\")},"
+        },
+        "id": "b40233a1-ecfb-3f05-8f4b-bc1a6490f46c",
+        "branch": "main",
+        "message": "Use gitleaks git cmd stream (#75)\n\n* Switch to git cmd stream\r\n\r\n* Fix rebase issues",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "0ee34a5be6702e1526031de68a69c3ec0806a9b0",
+        "date": "2022-03-14T17:12:58-07:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/mailboxlayer/mailboxlayer.go",
+        "line": "6",
+        "secret": "&email=support@email.com",
+        "context": {
+          "6": "+\t\t\treq, _ := http.NewRequest(\"GET\", \"http://apilayer.net/api/check?access_key=\"+resMatch+\"&email=support@email.com\", nil)"
+        },
+        "id": "69c321c7-00f8-30e8-a962-98330c0fc044",
+        "branch": "main",
+        "message": "Add context timeout to scanners",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "79496b81427a33db4580fc8a2f4160e78bf336fe",
+        "date": "2022-02-15T18:54:47-08:00"
+      },
+      {
+        "rule": {
+          "id": "private.pgp-key",
+          "message": "PGP Private Key Block",
+          "pattern": "-----BEGIN PGP PRIVATE KEY BLOCK-----",
+          "severity": "HIGH"
+        },
+        "path": "truffleHog/regexChecks.py",
+        "line": "14",
+        "secret": "-----BEGIN PGP PRIVATE KEY BLOCK-----",
+        "context": {
+          "14": "     \"PGP private key block\": re.compile('-----BEGIN PGP PRIVATE KEY BLOCK-----'),"
+        },
+        "id": "b17ecacb-7a9f-3a3f-9af7-bdd0f86715a1",
+        "branch": "paths",
+        "message": "updating regex checks",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "94c6d085bc2db0ab0ed7d8c13a4401001ed00777",
+        "date": "2017-12-10T12:56:38-08:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": ".github/workflows/test.yml",
+        "line": "48",
+        "secret": "'github-ci-external@trufflehog-testing.iam.gserviceaccount.com",
+        "context": {
+          "48": "        service_account: 'github-ci-external@trufflehog-testing.iam.gserviceaccount.com'"
+        },
+        "id": "b9b32256-8d42-370f-94a7-ee26bfea6775",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "private.pgp-key",
+          "message": "PGP Private Key Block",
+          "pattern": "-----BEGIN PGP PRIVATE KEY BLOCK-----",
+          "severity": "HIGH"
+        },
+        "path": "scripts/searchOrg.py",
+        "line": "14",
+        "secret": "-----BEGIN PGP PRIVATE KEY BLOCK-----",
+        "context": {
+          "14": "+    \"PGP private key block\": \"-----BEGIN PGP PRIVATE KEY BLOCK-----\","
+        },
+        "id": "8599eb65-868e-3216-8ee1-ec48864f4345",
+        "branch": "paths",
+        "message": "typo",
+        "author": "Maximilian Roos <5635139+max-sixty@users.noreply.github.com>",
+        "commit": "fc24b2567fb71e51345b3f611ed6eeb815440407",
+        "date": "2018-12-06T18:27:58-05:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "236",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "236": "\t\t\t\t\"90c75f884c65dc3638ca1610bd9844e668f213c2-aws\":   {B: []byte(\"this is the secret: [Default]\\nAccess key Id: AKIAILE3JG6KMS3HZGCA\\nSecret Access Key: 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\\n\"), Multi: true},"
+        },
+        "id": "b40233a1-ecfb-3f05-8f4b-bc1a6490f46c",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "README.md",
+        "line": "69",
+        "secret": "dustindecker@protonmail.com",
+        "context": {
+          "69": "+Email: dustindecker@protonmail.com"
+        },
+        "id": "6f0557a3-21da-3b62-a927-e9332fe2adfa",
+        "branch": "main",
+        "message": "Update detector process and readme (#79)",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "72c13c4b8f70605a7f3ace4466743d88e5c61aa1",
+        "date": "2022-03-14T17:27:14-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "226",
+        "secret": "AKIAXYZDQCEN4B6JSJQI",
+        "context": {
+          "226": "\t\t\t\t\"70001020fab32b1fcf2f1f0e5c66424eae649826-aws\":   {B: []byte(\"[default]\\naws_access_key_id = AKIAXYZDQCEN4B6JSJQI\\naws_secret_access_key = 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\\noutput = json\\nregion = us-east-2\\n\")},"
+        },
+        "id": "30325b83-51a2-3b4f-8ef4-8d573368d8d8",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "26",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "26": "+\t\t\t\t\"90c75f884c65dc3638ca1610bd9844e668f213c2-aws\":   {B: []byte(\"+this is the secret: [Default] \\n+Access key Id: AKIAILE3JG6KMS3HZGCA \\n+Secret Access Key: 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 \\n\"), Multi: true},"
+        },
+        "id": "b40233a1-ecfb-3f05-8f4b-bc1a6490f46c",
+        "branch": "main",
+        "message": "Use .Line to reduce diff strangeness (#380)",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "af979d46202da8f3f24a8a626dfb3d529b405295",
+        "date": "2022-04-11T16:38:08-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "14",
+        "secret": "AKIA2E0A8F3B244C9986",
+        "context": {
+          "14": "-\t\t\t\t\"8fe6f04ef1839e3fc54b5147e3d0e0b7ab971bd5-aws\":   {B: []byte(\"+blah blaj\\n+\\n+this is the secret: AKIA2E0A8F3B244C9986\\n+\\n+okay thank you bye\")},"
+        },
+        "id": "1c843567-a1c8-39a2-8550-7aa7cd67853d",
+        "branch": "main",
+        "message": "Use gitleaks git cmd stream (#75)\n\n* Switch to git cmd stream\r\n\r\n* Fix rebase issues",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "0ee34a5be6702e1526031de68a69c3ec0806a9b0",
+        "date": "2022-03-14T17:12:58-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "truffleHog/regexChecks.py",
+        "line": "10",
+        "secret": "-----BEGIN RSA PRIVATE KEY-----",
+        "context": {
+          "10": "+    \"RSA private key\": re.compile('-----BEGIN RSA PRIVATE KEY-----')"
+        },
+        "id": "4abedba9-4cc3-3953-85f9-714bc7a774e1",
+        "branch": "paths",
+        "message": "adding some more signals",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "e1d329e58ae387b1b9a2599a9b418ed0aa71a73e",
+        "date": "2017-10-10T21:15:41-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "truffleHog/defaultRegexes/regexChecks.py",
+        "line": "8",
+        "secret": "-----BEGIN OPENSSH PRIVATE KEY-----",
+        "context": {
+          "8": "+    \"SSH (OPENSSH) private key\": re.compile('-----BEGIN OPENSSH PRIVATE KEY-----'),"
+        },
+        "id": "7801439e-7dab-37ec-9c3b-3518534e24b0",
+        "branch": "paths",
+        "message": "Changing regexes to install regex package",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "58690fe2e89d0aef28ae313c8554941104071bb1",
+        "date": "2018-04-14T10:26:10-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.pgp-key",
+          "message": "PGP Private Key Block",
+          "pattern": "-----BEGIN PGP PRIVATE KEY BLOCK-----",
+          "severity": "HIGH"
+        },
+        "path": "truffleHog/regexChecks.py",
+        "line": "12",
+        "secret": "-----BEGIN PGP PRIVATE KEY BLOCK-----",
+        "context": {
+          "12": "-    \"PGP private key block\": re.compile('-----BEGIN PGP PRIVATE KEY BLOCK-----'),"
+        },
+        "id": "b17ecacb-7a9f-3a3f-9af7-bdd0f86715a1",
+        "branch": "paths",
+        "message": "Merge https://github.com/carnal0wnage/truffleHog-1 into dev",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "4e1884de29ccc5ca2a9a6c3c19fe912a4ae60ea1",
+        "date": "2017-12-10T12:49:19-08:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "scripts/searchOrg.py",
+        "line": "10",
+        "secret": "-----BEGIN RSA PRIVATE KEY-----",
+        "context": {
+          "10": "-    \"RSA private key\": \"-----BEGIN RSA PRIVATE KEY-----\","
+        },
+        "id": "298c4013-aa01-3863-8689-8cccebe141d0",
+        "branch": "paths",
+        "message": "bumping requirements",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "355502852332d5efe3d9ec94682c77c662da8609",
+        "date": "2018-12-16T22:17:41-08:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/debounce/debounce.go",
+        "line": "9",
+        "secret": "&email=some@gmail.com",
+        "context": {
+          "9": "+\t\t\treq, _ := http.NewRequestWithContext(ctx, \"GET\", \"https://api.debounce.io/v1/?api=\"+resMatch+\"&email=some@gmail.com\", nil)"
+        },
+        "id": "01631f41-0575-393d-99bb-0773ec3f556c",
+        "branch": "main",
+        "message": "check request errors",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "99372694ca89261e0ee03b2d3b09226ad080b339",
+        "date": "2022-03-23T16:42:34-07:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/clearbit/clearbit.go",
+        "line": "6",
+        "secret": "//person.clearbit.com/v1/people/email/alex@alexmaccaw.com",
+        "context": {
+          "6": "+\t\t\treq, _ := http.NewRequest(\"GET\", \"https://person.clearbit.com/v1/people/email/alex@alexmaccaw.com\", nil)"
+        },
+        "id": "85cd08f2-4cda-3d04-8667-5a25a25487c3",
+        "branch": "main",
+        "message": "Add context timeout to scanners",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "79496b81427a33db4580fc8a2f4160e78bf336fe",
+        "date": "2022-02-15T18:54:47-08:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/engine/git_test.go",
+        "line": "32",
+        "secret": "AKIAXYZDQCEN4B6JSJQI",
+        "context": {
+          "32": "+\t\t\t\t\"70001020fab32b1fcf2f1f0e5c66424eae649826\": \"AKIAXYZDQCEN4B6JSJQI\","
+        },
+        "id": "fd79ee91-2fc2-3651-8ac3-451f6913b45e",
+        "branch": "main",
+        "message": "Include line numbers in git metadata (#97)\n\n* Include line numbers in git metadata\r\n\r\n* Update tests for fragments and line numbers",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "c2b4f0bc39aa8dd92372ed066040c8289b2703a2",
+        "date": "2022-03-22T09:27:15-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "README.md",
+        "line": "10",
+        "secret": "-----BEGIN EC PRIVATE KEY-----",
+        "context": {
+          "10": "+    \"RSA private key\": \"-----BEGIN EC PRIVATE KEY-----\""
+        },
+        "id": "17b20482-12f2-3cd3-9013-cc95fb47b5ea",
+        "branch": "paths",
+        "message": "surpressing output",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "09824b0c9f512c548a3de1d564453e092d5d7077",
+        "date": "2018-05-13T10:52:07-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "truffleHog/defaultRegexes/regexChecks.py",
+        "line": "10",
+        "secret": "-----BEGIN EC PRIVATE KEY-----",
+        "context": {
+          "10": "+    \"SSH (EC) private key\": re.compile('-----BEGIN EC PRIVATE KEY-----'),"
+        },
+        "id": "7b300386-c399-3e5a-abab-ea12012f0e4e",
+        "branch": "paths",
+        "message": "Changing regexes to install regex package",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "58690fe2e89d0aef28ae313c8554941104071bb1",
+        "date": "2018-04-14T10:26:10-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "25",
+        "secret": "AKIA2E0A8F3B244C9986",
+        "context": {
+          "25": "+\t\t\t\t\"8fe6f04ef1839e3fc54b5147e3d0e0b7ab971bd5-aws\":   {B: []byte(\"blah blaj\\n\\nthis is the secret: AKIA2E0A8F3B244C9986\\n\\nokay thank you bye\")},"
+        },
+        "id": "221352a8-4663-3c39-a868-b05e2282d84e",
+        "branch": "main",
+        "message": "Use gitleaks git cmd stream (#75)\n\n* Switch to git cmd stream\r\n\r\n* Fix rebase issues",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "0ee34a5be6702e1526031de68a69c3ec0806a9b0",
+        "date": "2022-03-14T17:12:58-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.pgp-key",
+          "message": "PGP Private Key Block",
+          "pattern": "-----BEGIN PGP PRIVATE KEY BLOCK-----",
+          "severity": "HIGH"
+        },
+        "path": "scripts/searchOrg.py",
+        "line": "14",
+        "secret": "-----BEGIN PGP PRIVATE KEY BLOCK-----",
+        "context": {
+          "14": "+    \"PGP private key block\": \"-----BEGIN PGP PRIVATE KEY BLOCK-----\","
+        },
+        "id": "8599eb65-868e-3216-8ee1-ec48864f4345",
+        "branch": "paths",
+        "message": "Merge pull request #135 from max-sixty/patch-1\n\nBenifit -> Benefit",
+        "author": "Dylan Ayrey <dxa4481@rit.edu>",
+        "commit": "a4c69fa2f6b256bfe824ac82b96c77eb8c06b2d0",
+        "date": "2018-12-16T22:21:16-08:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "22",
+        "secret": "AKIA2E0A8F3B244C9986",
+        "context": {
+          "22": "-\t\t\t\t\"8fe6f04ef1839e3fc54b5147e3d0e0b7ab971bd5-aws\":   {B: []byte(\"+blah blaj \\n+ \\n+this is the secret: AKIA2E0A8F3B244C9986 \\n+ \\n+okay thank you bye\\n\"), Multi: true},"
+        },
+        "id": "1c843567-a1c8-39a2-8550-7aa7cd67853d",
+        "branch": "main",
+        "message": "Include line numbers in git metadata (#97)\n\n* Include line numbers in git metadata\r\n\r\n* Update tests for fragments and line numbers",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "c2b4f0bc39aa8dd92372ed066040c8289b2703a2",
+        "date": "2022-03-22T09:27:15-07:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "README.md",
+        "line": "29",
+        "secret": "dustindecker@protonmail.com",
+        "context": {
+          "29": "-Email: dustindecker@protonmail.com"
+        },
+        "id": "6f0557a3-21da-3b62-a927-e9332fe2adfa",
+        "branch": "main",
+        "message": "update docs and support multi platform docker images",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "a96de1a2cd8d81f26f1b27cff85216eff67d909a",
+        "date": "2022-02-15T18:54:47-08:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "scripts/searchOrg.py",
+        "line": "10",
+        "secret": "-----BEGIN RSA PRIVATE KEY-----",
+        "context": {
+          "10": "+    \"RSA private key\": \"-----BEGIN RSA PRIVATE KEY-----\","
+        },
+        "id": "298c4013-aa01-3863-8689-8cccebe141d0",
+        "branch": "paths",
+        "message": "Merge pull request #135 from max-sixty/patch-1\n\nBenifit -> Benefit",
+        "author": "Dylan Ayrey <dxa4481@rit.edu>",
+        "commit": "a4c69fa2f6b256bfe824ac82b96c77eb8c06b2d0",
+        "date": "2018-12-16T22:21:16-08:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "truffleHog/regexChecks.py",
+        "line": "9",
+        "secret": "-----BEGIN OPENSSH PRIVATE KEY-----",
+        "context": {
+          "9": "-    \"SSH (OPENSSH) private key\": re.compile('-----BEGIN OPENSSH PRIVATE KEY-----'),"
+        },
+        "id": "e1a168d1-30a8-3b04-a755-f8b1143e1beb",
+        "branch": "paths",
+        "message": "Merge https://github.com/carnal0wnage/truffleHog-1 into dev",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "4e1884de29ccc5ca2a9a6c3c19fe912a4ae60ea1",
+        "date": "2017-12-10T12:49:19-08:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": ".github/workflows/test.yml",
+        "line": "29",
+        "secret": "'github-ci-external@trufflehog-testing.iam.gserviceaccount.com",
+        "context": {
+          "29": "        service_account: 'github-ci-external@trufflehog-testing.iam.gserviceaccount.com'"
+        },
+        "id": "b9b32256-8d42-370f-94a7-ee26bfea6775",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/engine/git_test.go",
+        "line": "7",
+        "secret": "AKIAXYZDQCEN4B6JSJQI",
+        "context": {
+          "7": "-\t\t\t\t\"70001020fab32b1fcf2f1f0e5c66424eae649826\": \"AKIAXYZDQCEN4B6JSJQI\","
+        },
+        "id": "fd79ee91-2fc2-3651-8ac3-451f6913b45e",
+        "branch": "main",
+        "message": "Add parent results to ignore list (#47)\n\n* Add parent results to ignore list\r\n\r\n* Force concurrency to 1 when base commit is set",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "c144630c54dd772b849ca31c67735b9ed5d031ad",
+        "date": "2022-03-04T08:39:22-08:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "34",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "34": "+\t\t\t\t\"90c75f884c65dc3638ca1610bd9844e668f213c2-aws\":   {B: []byte(\"+this is the secret: [Default]\\n+Access key Id: AKIAILE3JG6KMS3HZGCA\\n+Secret Access Key: 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\\n+okay thank you bye\\n\")},"
+        },
+        "id": "b40233a1-ecfb-3f05-8f4b-bc1a6490f46c",
+        "branch": "main",
+        "message": "Include line numbers in git metadata (#97)\n\n* Include line numbers in git metadata\r\n\r\n* Update tests for fragments and line numbers",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "c2b4f0bc39aa8dd92372ed066040c8289b2703a2",
+        "date": "2022-03-22T09:27:15-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "scripts/searchOrg.py",
+        "line": "13",
+        "secret": "-----BEGIN EC PRIVATE KEY-----",
+        "context": {
+          "13": "-    \"SSH (EC) private key\": \"-----BEGIN EC PRIVATE KEY-----\","
+        },
+        "id": "8c2f03ed-0184-3962-bc32-a793b88741e8",
+        "branch": "paths",
+        "message": "modifying search org",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "3048c6429d80094b42fd44919e3d6768536178ce",
+        "date": "2018-09-29T09:21:15-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/engine/git_test.go",
+        "line": "41",
+        "secret": "AKIAXYZDQCEN4B6JSJQI",
+        "context": {
+          "41": "-\t\t\t\t\"70001020fab32b1fcf2f1f0e5c66424eae649826\": {\"AKIAXYZDQCEN4B6JSJQI\", 2},"
+        },
+        "id": "fd79ee91-2fc2-3651-8ac3-451f6913b45e",
+        "branch": "main",
+        "message": "Include line numbers in git metadata (#97)\n\n* Include line numbers in git metadata\r\n\r\n* Update tests for fragments and line numbers",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "c2b4f0bc39aa8dd92372ed066040c8289b2703a2",
+        "date": "2022-03-22T09:27:15-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "16",
+        "secret": "AKIAXYZDQCEN4B6JSJQI",
+        "context": {
+          "16": "+\t\t\t\t\"70001020fab32b1fcf2f1f0e5c66424eae649826-aws\":   {B: []byte(\"+[default] \\n+aws_access_key_id = AKIAXYZDQCEN4B6JSJQI \\n+aws_secret_access_key = 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 \\n+output = json \\n+region = us-east-2 \\n\")},"
+        },
+        "id": "3086243d-d2d6-372b-a2a8-f9a90f065422",
+        "branch": "main",
+        "message": "Use .Line to reduce diff strangeness (#380)",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "af979d46202da8f3f24a8a626dfb3d529b405295",
+        "date": "2022-04-11T16:38:08-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "truffleHog/regexChecks.py",
+        "line": "8",
+        "secret": "-----BEGIN RSA PRIVATE KEY-----",
+        "context": {
+          "8": "     \"RSA private key\": re.compile('-----BEGIN RSA PRIVATE KEY-----'),"
+        },
+        "id": "4abedba9-4cc3-3953-85f9-714bc7a774e1",
+        "branch": "paths",
+        "message": "Update regexChecks.py",
+        "author": "Chris Gates <chris@carnal0wnage.com>",
+        "commit": "b6073aafed119255301571cf8ff1ea43ede87c95",
+        "date": "2017-12-08T11:38:45-05:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "pkg/detectors/privatekey/cracker_test.go",
+        "line": "13",
+        "secret": "-----BEGIN OPENSSH PRIVATE KEY-----",
+        "context": {
+          "13": "\ttestEncryptedKey                  = []byte(normalize(`-----BEGIN OPENSSH PRIVATE KEY-----"
+        },
+        "id": "5ef93008-85d2-35b6-bc6f-3437b77c65a8",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/engine/git_test.go",
+        "line": "40",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "40": "\t\t\t\t\"90c75f884c65dc3638ca1610bd9844e668f213c2\": {\"AKIAILE3JG6KMS3HZGCA\", 4},"
+        },
+        "id": "02d7cdf6-e597-318a-b85e-56880882064a",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/mailboxlayer/mailboxlayer.go",
+        "line": "5",
+        "secret": "&email=support@email.com",
+        "context": {
+          "5": "-\t\t\treq, err := http.NewRequestWithContext(ctx, \"GET\", \"https://apilayer.net/api/check?access_key=\"+resMatch+\"&email=support@email.com\", nil)"
+        },
+        "id": "69c321c7-00f8-30e8-a962-98330c0fc044",
+        "branch": "main",
+        "message": "check request errors",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "99372694ca89261e0ee03b2d3b09226ad080b339",
+        "date": "2022-03-23T16:42:34-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "scripts/searchOrg.py",
+        "line": "11",
+        "secret": "-----BEGIN OPENSSH PRIVATE KEY-----",
+        "context": {
+          "11": "-    \"SSH (OPENSSH) private key\": \"-----BEGIN OPENSSH PRIVATE KEY-----\","
+        },
+        "id": "956b6c29-1ccf-3454-a678-560fd0be89c5",
+        "branch": "paths",
+        "message": "bumping requirements",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "355502852332d5efe3d9ec94682c77c662da8609",
+        "date": "2018-12-16T22:17:41-08:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/engine/git_test.go",
+        "line": "27",
+        "secret": "AKIAXYZDQCEN4B6JSJQI",
+        "context": {
+          "27": "-\t\t\t\t\"70001020fab32b1fcf2f1f0e5c66424eae649826\": {\"AKIAXYZDQCEN4B6JSJQI\", 2},"
+        },
+        "id": "fd79ee91-2fc2-3651-8ac3-451f6913b45e",
+        "branch": "main",
+        "message": "Include line numbers in git metadata (#97)\n\n* Include line numbers in git metadata\r\n\r\n* Update tests for fragments and line numbers",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "c2b4f0bc39aa8dd92372ed066040c8289b2703a2",
+        "date": "2022-03-22T09:27:15-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "scripts/searchOrg.py",
+        "line": "13",
+        "secret": "-----BEGIN EC PRIVATE KEY-----",
+        "context": {
+          "13": "-    \"SSH (EC) private key\": \"-----BEGIN EC PRIVATE KEY-----\","
+        },
+        "id": "8c2f03ed-0184-3962-bc32-a793b88741e8",
+        "branch": "paths",
+        "message": "bumping requirements",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "355502852332d5efe3d9ec94682c77c662da8609",
+        "date": "2018-12-16T22:17:41-08:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "SECURITY.md",
+        "line": "1",
+        "secret": "security@trufflesec.com",
+        "context": {
+          "1": "Please report any security issues to security@trufflesec.com and include `trufflehog` in the subject"
+        },
+        "id": "3dc98494-0f23-3a06-a2f5-268562ed59db",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "226",
+        "secret": "AKIAXYZDQCEN4B6JSJQI",
+        "context": {
+          "226": "\t\t\t\t\"70001020fab32b1fcf2f1f0e5c66424eae649826-aws\":   {B: []byte(\"[default]\\naws_access_key_id = AKIAXYZDQCEN4B6JSJQI\\naws_secret_access_key = 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\\noutput = json\\nregion = us-east-2\\n\")},"
+        },
+        "id": "3086243d-d2d6-372b-a2a8-f9a90f065422",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "23",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "23": "+\t\t\t\t\"84e9c75e388ae3e866e121087ea2dd45a71068f2-aws\":   {B: []byte(\"this is the secret: [Default]\\nAccess key Id: AKIAILE3JG6KMS3HZGCA\\nSecret Access Key: 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\\nokay thank you bye\\n\")},"
+        },
+        "id": "43b23fe6-083b-3775-957e-f8b943de1b3e",
+        "branch": "main",
+        "message": "Match expected chunks to actual",
+        "author": "Bill Rich <bill.rich@trufflesec.com>",
+        "commit": "6b183424f568b9c257306883232ee1fd0268f32d",
+        "date": "2022-02-15T18:54:47-08:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/gcp/gcp_test.go",
+        "line": "48",
+        "secret": "secret-scanner-test-account@thog-sandbox.iam.gserviceaccount.com",
+        "context": {
+          "48": "\t\t\t\t\tRedacted:     \"secret-scanner-test-account@thog-sandbox.iam.gserviceaccount.com\","
+        },
+        "id": "3ee4dbbc-2235-343a-b3bf-f8b60ce312a9",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/uri/uri_test.go",
+        "line": "76",
+        "secret": "pass@foo.com",
+        "context": {
+          "76": "\t\t\t\tdata:   []byte(\"file://user:pass@foo.com:123/wh/at/ever\"),"
+        },
+        "id": "c95d63ef-e58d-3170-8e62-9eb6f3ef4814",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "private.pgp-key",
+          "message": "PGP Private Key Block",
+          "pattern": "-----BEGIN PGP PRIVATE KEY BLOCK-----",
+          "severity": "HIGH"
+        },
+        "path": "scripts/searchOrg.py",
+        "line": "14",
+        "secret": "-----BEGIN PGP PRIVATE KEY BLOCK-----",
+        "context": {
+          "14": "-    \"PGP private key block\": \"-----BEGIN PGP PRIVATE KEY BLOCK-----\","
+        },
+        "id": "8599eb65-868e-3216-8ee1-ec48864f4345",
+        "branch": "paths",
+        "message": "modifying search org",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "3048c6429d80094b42fd44919e3d6768536178ce",
+        "date": "2018-09-29T09:21:15-07:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/zerobounce/zerobounce.go",
+        "line": "5",
+        "secret": "//api.zerobounce.net/v1/activity?email=testemail@email.com",
+        "context": {
+          "5": "-\t\t\treq, err := http.NewRequestWithContext(ctx, \"GET\", \"https://api.zerobounce.net/v1/activity?email=testemail@email.com&api_key=\"+resMatch, nil)"
+        },
+        "id": "e4799fda-e5e4-3e01-9875-82f2d2860278",
+        "branch": "main",
+        "message": "Detector improvements (#125)\n\n* New tokens and endpoints  (#115)\r\n\r\nCo-authored-by: dmarquero <danee.arquero@gmail.com>",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "aea937422e4cbab6b9a1e1f12fb48212d966bb7e",
+        "date": "2022-04-03T11:20:09-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "15",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "15": "-\t\t\t\t\"90c75f884c65dc3638ca1610bd9844e668f213c2-aws\":   {B: []byte(\"this is the secret: [Default]\\nAccess key Id: AKIAILE3JG6KMS3HZGCA\\nSecret Access Key: 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\\n\"), Multi: true},"
+        },
+        "id": "b40233a1-ecfb-3f05-8f4b-bc1a6490f46c",
+        "branch": "main",
+        "message": "Use .Line to reduce diff strangeness (#380)",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "af979d46202da8f3f24a8a626dfb3d529b405295",
+        "date": "2022-04-11T16:38:08-07:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "CODE_OF_CONDUCT.md",
+        "line": "58",
+        "secret": "community@trufflesec.com",
+        "context": {
+          "58": "reported by contacting the project team at community@trufflesec.com. All"
+        },
+        "id": "ec63c00f-24b8-3b35-b564-49c91f967ca5",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "private.pgp-key",
+          "message": "PGP Private Key Block",
+          "pattern": "-----BEGIN PGP PRIVATE KEY BLOCK-----",
+          "severity": "HIGH"
+        },
+        "path": "truffleHog/regexChecks.py",
+        "line": "12",
+        "secret": "-----BEGIN PGP PRIVATE KEY BLOCK-----",
+        "context": {
+          "12": "+    \"PGP private key block\": re.compile('-----BEGIN PGP PRIVATE KEY BLOCK-----'),"
+        },
+        "id": "b17ecacb-7a9f-3a3f-9af7-bdd0f86715a1",
+        "branch": "paths",
+        "message": "Add coverage",
+        "author": "Stephen <stephen@egroat.com>",
+        "commit": "bbb1392f94ddf21ae18bce19f63f5abb309657c7",
+        "date": "2017-12-10T11:25:01-08:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "26",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "26": "+\t\t\t\t\"84e9c75e388ae3e866e121087ea2dd45a71068f2-aws\":   {B: []byte(\"blah blaj\\n\\nthis is the secret: [Default]\\nAccess key Id: AKIAILE3JG6KMS3HZGCA\\nSecret Access Key: 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\\n\\nokay thank you bye\\n\")},"
+        },
+        "id": "43b23fe6-083b-3775-957e-f8b943de1b3e",
+        "branch": "main",
+        "message": "Use gitleaks git cmd stream (#75)\n\n* Switch to git cmd stream\r\n\r\n* Fix rebase issues",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "0ee34a5be6702e1526031de68a69c3ec0806a9b0",
+        "date": "2022-03-14T17:12:58-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "scripts/searchOrg.py",
+        "line": "12",
+        "secret": "-----BEGIN DSA PRIVATE KEY-----",
+        "context": {
+          "12": "-    \"SSH (DSA) private key\": \"-----BEGIN DSA PRIVATE KEY-----\","
+        },
+        "id": "d7080f65-9b44-3e5b-a47a-8c149d26e9e6",
+        "branch": "paths",
+        "message": "bumping requirements",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "355502852332d5efe3d9ec94682c77c662da8609",
+        "date": "2018-12-16T22:17:41-08:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/giturl/giturl_test.go",
+        "line": "78",
+        "secret": "git@gitlab.com",
+        "context": {
+          "78": "\t\t\"gitlab needs https\": {Repo: \"git@gitlab.com:org/repo.git:\", Out: \"\", Err: errors.New(\"Gitlab requires https repo urls: e.g. https://gitlab.com/org/repo.git\")},"
+        },
+        "id": "b89218c3-9ee7-3c65-b653-2282d7bed084",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/engine/git_test.go",
+        "line": "41",
+        "secret": "AKIAXYZDQCEN4B6JSJQI",
+        "context": {
+          "41": "-\t\t\t\t\"70001020fab32b1fcf2f1f0e5c66424eae649826\": {\"AKIAXYZDQCEN4B6JSJQI\", 2},"
+        },
+        "id": "9328ef1b-cd6c-32dc-acb5-b958de816147",
+        "branch": "main",
+        "message": "Include line numbers in git metadata (#97)\n\n* Include line numbers in git metadata\r\n\r\n* Update tests for fragments and line numbers",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "c2b4f0bc39aa8dd92372ed066040c8289b2703a2",
+        "date": "2022-03-22T09:27:15-07:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/kickbox/kickbox.go",
+        "line": "5",
+        "secret": "//api.kickbox.com/v2/verify?email=kickbox@example.com",
+        "context": {
+          "5": "-\t\t\treq, err := http.NewRequestWithContext(ctx, \"GET\", \"https://api.kickbox.com/v2/verify?email=kickbox@example.com&apikey=\"+resMatch, nil)"
+        },
+        "id": "4367f7ff-a724-3883-a98b-c3314d87d9e6",
+        "branch": "main",
+        "message": "check request errors",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "99372694ca89261e0ee03b2d3b09226ad080b339",
+        "date": "2022-03-23T16:42:34-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/engine/git_test.go",
+        "line": "28",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "28": "-\t\t\t\t\"90c75f884c65dc3638ca1610bd9844e668f213c2\": {\"AKIAILE3JG6KMS3HZGCA\", 4},"
+        },
+        "id": "02d7cdf6-e597-318a-b85e-56880882064a",
+        "branch": "main",
+        "message": "Include line numbers in git metadata (#97)\n\n* Include line numbers in git metadata\r\n\r\n* Update tests for fragments and line numbers",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "c2b4f0bc39aa8dd92372ed066040c8289b2703a2",
+        "date": "2022-03-22T09:27:15-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/engine/git_test.go",
+        "line": "7",
+        "secret": "AKIAXYZDQCEN4B6JSJQI",
+        "context": {
+          "7": "-\t\t\t\t\"70001020fab32b1fcf2f1f0e5c66424eae649826\": \"AKIAXYZDQCEN4B6JSJQI\","
+        },
+        "id": "9328ef1b-cd6c-32dc-acb5-b958de816147",
+        "branch": "main",
+        "message": "Add parent results to ignore list (#47)\n\n* Add parent results to ignore list\r\n\r\n* Force concurrency to 1 when base commit is set",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "c144630c54dd772b849ca31c67735b9ed5d031ad",
+        "date": "2022-03-04T08:39:22-08:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/engine/git_test.go",
+        "line": "43",
+        "secret": "AKIAXYZDQCEN4B6JSJQI",
+        "context": {
+          "43": "+\t\t\t\t\"70001020fab32b1fcf2f1f0e5c66424eae649826\": \"AKIAXYZDQCEN4B6JSJQI\","
+        },
+        "id": "fd79ee91-2fc2-3651-8ac3-451f6913b45e",
+        "branch": "main",
+        "message": "Include line numbers in git metadata (#97)\n\n* Include line numbers in git metadata\r\n\r\n* Update tests for fragments and line numbers",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "c2b4f0bc39aa8dd92372ed066040c8289b2703a2",
+        "date": "2022-03-22T09:27:15-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "scripts/searchOrg.py",
+        "line": "13",
+        "secret": "-----BEGIN EC PRIVATE KEY-----",
+        "context": {
+          "13": "+    \"SSH (EC) private key\": \"-----BEGIN EC PRIVATE KEY-----\","
+        },
+        "id": "8c2f03ed-0184-3962-bc32-a793b88741e8",
+        "branch": "paths",
+        "message": "typo",
+        "author": "Maximilian Roos <5635139+max-sixty@users.noreply.github.com>",
+        "commit": "fc24b2567fb71e51345b3f611ed6eeb815440407",
+        "date": "2018-12-06T18:27:58-05:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "26",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "26": "+\t\t\t\t\"90c75f884c65dc3638ca1610bd9844e668f213c2-aws\":   {B: []byte(\"+this is the secret: [Default] \\n+Access key Id: AKIAILE3JG6KMS3HZGCA \\n+Secret Access Key: 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 \\n\"), Multi: true},"
+        },
+        "id": "43b23fe6-083b-3775-957e-f8b943de1b3e",
+        "branch": "main",
+        "message": "Use .Line to reduce diff strangeness (#380)",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "af979d46202da8f3f24a8a626dfb3d529b405295",
+        "date": "2022-04-11T16:38:08-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/engine/git_test.go",
+        "line": "4",
+        "secret": "AKIAXYZDQCEN4B6JSJQI",
+        "context": {
+          "4": " \t\t\t\t\"70001020fab32b1fcf2f1f0e5c66424eae649826\": \"AKIAXYZDQCEN4B6JSJQI\","
+        },
+        "id": "fd79ee91-2fc2-3651-8ac3-451f6913b45e",
+        "branch": "main",
+        "message": "Use gitleaks git cmd stream (#75)\n\n* Switch to git cmd stream\r\n\r\n* Fix rebase issues",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "0ee34a5be6702e1526031de68a69c3ec0806a9b0",
+        "date": "2022-03-14T17:12:58-07:00"
+      },
+      {
+        "rule": {
+          "id": "github.token",
+          "message": "GitHub Token",
+          "pattern": "[g|G][i|I][t|T][h|H][u|U][b|B].*['|\"][0-9a-zA-Z]{35,40}['|\"]",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/detectors/airbrakeprojectkey/airbrakeprojectkey.go",
+        "line": "3",
+        "secret": "github.com/airbrake/airbrake\",\"revision\":\"38748467ea579e7ae64f7815452307c9d05e05c5\"",
+        "context": {
+          "3": " \t\t\t\tpayload := strings.NewReader(`{\"environment\":\"production\",\"username\":\"john\",\"email\":\"john@smith.com\",\"repository\":\"https://github.com/airbrake/airbrake\",\"revision\":\"38748467ea579e7ae64f7815452307c9d05e05c5\",\"version\":\"v2.0\"}`)"
+        },
+        "id": "c8a19ad7-6cb5-33b2-bb21-568d267c1b7d",
+        "branch": "main",
+        "message": "Add context timeout to scanners",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "79496b81427a33db4580fc8a2f4160e78bf336fe",
+        "date": "2022-02-15T18:54:47-08:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/mailboxlayer/mailboxlayer.go",
+        "line": "5",
+        "secret": "&email=support@email.com",
+        "context": {
+          "5": "-\t\t\treq, _ := http.NewRequestWithContext(ctx, \"GET\", \"http://apilayer.net/api/check?access_key=\"+resMatch+\"&email=support@email.com\", nil)"
+        },
+        "id": "69c321c7-00f8-30e8-a962-98330c0fc044",
+        "branch": "main",
+        "message": "Add context timeout to scanners",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "79496b81427a33db4580fc8a2f4160e78bf336fe",
+        "date": "2022-02-15T18:54:47-08:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/debounce/debounce.go",
+        "line": "50",
+        "secret": "&email=some@gmail.com",
+        "context": {
+          "50": "\t\t\treq, err := http.NewRequestWithContext(ctx, \"GET\", \"https://api.debounce.io/v1/?api=\"+resMatch+\"&email=some@gmail.com\", nil)"
+        },
+        "id": "01631f41-0575-393d-99bb-0773ec3f556c",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/mailboxlayer/mailboxlayer.go",
+        "line": "5",
+        "secret": "&email=support@email.com",
+        "context": {
+          "5": "-\t\t\treq, _ := http.NewRequestWithContext(ctx, \"GET\", \"https://apilayer.net/api/check?access_key=\"+resMatch+\"&email=support@email.com\", nil)"
+        },
+        "id": "69c321c7-00f8-30e8-a962-98330c0fc044",
+        "branch": "main",
+        "message": "improvements",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "c20e9f4732060372866ff804b1ee96676839f722",
+        "date": "2022-03-04T08:39:17-08:00"
+      },
+      {
+        "rule": {
+          "id": "generic.secret",
+          "message": "Generic Secret",
+          "pattern": "[s|S][e|E][c|C][r|R][e|E][t|T].*['|\"][0-9a-zA-Z]{32,45}['|\"]",
+          "severity": "LOW"
+        },
+        "path": "test_all.py",
+        "line": "22",
+        "secret": "secret = '9ed54617547cfca783e0f81f8dc5c927e3d1e345'",
+        "context": {
+          "22": "-        commit_w_secret = '9ed54617547cfca783e0f81f8dc5c927e3d1e345'"
+        },
+        "id": "d6aa22b6-31c0-3906-9456-b2c59f19c319",
+        "branch": "paths",
+        "message": "Update README.md",
+        "author": "Dylan Ayrey <dxa4481@rit.edu>",
+        "commit": "fe0d53753c8df41e7aef6083684f0e4bc9e94016",
+        "date": "2018-08-27T20:08:51-07:00"
+      },
+      {
+        "rule": {
+          "id": "github.token",
+          "message": "GitHub Token",
+          "pattern": "[g|G][i|I][t|T][h|H][u|U][b|B].*['|\"][0-9a-zA-Z]{35,40}['|\"]",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/detectors/airbrakeprojectkey/airbrakeprojectkey.go",
+        "line": "59",
+        "secret": "github.com/airbrake/airbrake\",\"revision\":\"38748467ea579e7ae64f7815452307c9d05e05c5\"",
+        "context": {
+          "59": "\t\t\t\tpayload := strings.NewReader(`{\"environment\":\"production\",\"username\":\"john\",\"email\":\"john@smith.com\",\"repository\":\"https://github.com/airbrake/airbrake\",\"revision\":\"38748467ea579e7ae64f7815452307c9d05e05c5\",\"version\":\"v2.0\"}`)"
+        },
+        "id": "c8a19ad7-6cb5-33b2-bb21-568d267c1b7d",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "action.yml",
+        "line": "5",
+        "secret": "support@trufflesec.com",
+        "context": {
+          "5": " author: Truffle Security Co. <support@trufflesec.com>"
+        },
+        "id": "c7043a74-3145-32e0-83db-86ffee970d41",
+        "branch": "main",
+        "message": "update action name",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "33ceb970595f335b7bf3b3dbe5c3da2900d451a8",
+        "date": "2022-04-08T14:52:36-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/engine/git_test.go",
+        "line": "5",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "5": "-\t\t\t\t\"90c75f884c65dc3638ca1610bd9844e668f213c2\": \"AKIAILE3JG6KMS3HZGCA\","
+        },
+        "id": "02d7cdf6-e597-318a-b85e-56880882064a",
+        "branch": "main",
+        "message": "Use gitleaks git cmd stream (#75)\n\n* Switch to git cmd stream\r\n\r\n* Fix rebase issues",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "0ee34a5be6702e1526031de68a69c3ec0806a9b0",
+        "date": "2022-03-14T17:12:58-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "5",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "5": "+\t\t\t\t\"90c75f884c65dc3638ca1610bd9844e668f213c2-aws\":   {B: []byte(\"blah blaj\\n\\nthis is the secret: [Default]\\nAccess key Id: AKIAILE3JG6KMS3HZGCA\\nSecret Access Key: 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\\n\\nokay thank you bye\\n\")},"
+        },
+        "id": "43b23fe6-083b-3775-957e-f8b943de1b3e",
+        "branch": "main",
+        "message": "Fast git scanning (#40)\n\n* Fast git scanning\r\n\r\n* Use original tests\r\n\r\n* Use committer time\r\n\r\nCo-authored-by: Bill Rich <bill.rich@trufflesec.com>",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "2d8756938d3bdde6645342cca9dc2adbdff9c81c",
+        "date": "2022-02-15T18:54:47-08:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "14",
+        "secret": "AKIA2E0A8F3B244C9986",
+        "context": {
+          "14": "-\t\t\t\t\"8fe6f04ef1839e3fc54b5147e3d0e0b7ab971bd5-aws\":   {B: []byte(\"blah blaj\\n\\nthis is the secret: AKIA2E0A8F3B244C9986\\n\\nokay thank you bye\"), Multi: true},"
+        },
+        "id": "221352a8-4663-3c39-a868-b05e2282d84e",
+        "branch": "main",
+        "message": "Use .Line to reduce diff strangeness (#380)",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "af979d46202da8f3f24a8a626dfb3d529b405295",
+        "date": "2022-04-11T16:38:08-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "5",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "5": "+\t\t\t\t\"90c75f884c65dc3638ca1610bd9844e668f213c2-aws\":   {B: []byte(\"blah blaj\\n\\nthis is the secret: [Default]\\nAccess key Id: AKIAILE3JG6KMS3HZGCA\\nSecret Access Key: 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\\n\\nokay thank you bye\\n\")},"
+        },
+        "id": "b40233a1-ecfb-3f05-8f4b-bc1a6490f46c",
+        "branch": "main",
+        "message": "Fast git scanning (#40)\n\n* Fast git scanning\r\n\r\n* Use original tests\r\n\r\n* Use committer time\r\n\r\nCo-authored-by: Bill Rich <bill.rich@trufflesec.com>",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "2d8756938d3bdde6645342cca9dc2adbdff9c81c",
+        "date": "2022-02-15T18:54:47-08:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "33",
+        "secret": "AKIA2E0A8F3B244C9986",
+        "context": {
+          "33": "+\t\t\t\t\"8fe6f04ef1839e3fc54b5147e3d0e0b7ab971bd5-aws\":   {B: []byte(\"+blah blaj\\n+\\n+this is the secret: AKIA2E0A8F3B244C9986\\n+\\n+okay thank you bye\")},"
+        },
+        "id": "221352a8-4663-3c39-a868-b05e2282d84e",
+        "branch": "main",
+        "message": "Include line numbers in git metadata (#97)\n\n* Include line numbers in git metadata\r\n\r\n* Update tests for fragments and line numbers",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "c2b4f0bc39aa8dd92372ed066040c8289b2703a2",
+        "date": "2022-03-22T09:27:15-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/engine/git_test.go",
+        "line": "33",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "33": "+\t\t\t\t\"90c75f884c65dc3638ca1610bd9844e668f213c2\": \"AKIAILE3JG6KMS3HZGCA\","
+        },
+        "id": "d51ec4dc-d998-3fba-afb6-307d4dc50341",
+        "branch": "main",
+        "message": "Include line numbers in git metadata (#97)\n\n* Include line numbers in git metadata\r\n\r\n* Update tests for fragments and line numbers",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "c2b4f0bc39aa8dd92372ed066040c8289b2703a2",
+        "date": "2022-03-22T09:27:15-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/engine/git_test.go",
+        "line": "5",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "5": "-\t\t\t\t\"90c75f884c65dc3638ca1610bd9844e668f213c2\": \"AKIAILE3JG6KMS3HZGCA\","
+        },
+        "id": "d51ec4dc-d998-3fba-afb6-307d4dc50341",
+        "branch": "main",
+        "message": "Use gitleaks git cmd stream (#75)\n\n* Switch to git cmd stream\r\n\r\n* Fix rebase issues",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "0ee34a5be6702e1526031de68a69c3ec0806a9b0",
+        "date": "2022-03-14T17:12:58-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/engine/git_test.go",
+        "line": "48",
+        "secret": "AKIAXYZDQCEN4B6JSJQI",
+        "context": {
+          "48": "\t\t\t\t\"70001020fab32b1fcf2f1f0e5c66424eae649826\": {\"AKIAXYZDQCEN4B6JSJQI\", 2},"
+        },
+        "id": "fd79ee91-2fc2-3651-8ac3-451f6913b45e",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "truffleHog/regexChecks.py",
+        "line": "10",
+        "secret": "-----BEGIN RSA PRIVATE KEY-----",
+        "context": {
+          "10": "     \"RSA private key\": re.compile('-----BEGIN RSA PRIVATE KEY-----'),"
+        },
+        "id": "4abedba9-4cc3-3953-85f9-714bc7a774e1",
+        "branch": "paths",
+        "message": "updating regex checks",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "94c6d085bc2db0ab0ed7d8c13a4401001ed00777",
+        "date": "2017-12-10T12:56:38-08:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "README.md",
+        "line": "61",
+        "secret": "dustindecker@protonmail.com",
+        "context": {
+          "61": "+Email: dustindecker@protonmail.com"
+        },
+        "id": "6f0557a3-21da-3b62-a927-e9332fe2adfa",
+        "branch": "main",
+        "message": "Update detector process and readme (#79)",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "72c13c4b8f70605a7f3ace4466743d88e5c61aa1",
+        "date": "2022-03-14T17:27:14-07:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/mailboxlayer/mailboxlayer.go",
+        "line": "9",
+        "secret": "&email=support@email.com",
+        "context": {
+          "9": "+\t\t\treq, _ := http.NewRequestWithContext(ctx, \"GET\", \"https://apilayer.net/api/check?access_key=\"+resMatch+\"&email=support@email.com\", nil)"
+        },
+        "id": "69c321c7-00f8-30e8-a962-98330c0fc044",
+        "branch": "main",
+        "message": "check request errors",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "99372694ca89261e0ee03b2d3b09226ad080b339",
+        "date": "2022-03-23T16:42:34-07:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/clearbit/clearbit.go",
+        "line": "5",
+        "secret": "//person.clearbit.com/v1/people/email/alex@alexmaccaw.com",
+        "context": {
+          "5": "-\t\t\treq, _ := http.NewRequestWithContext(ctx, \"GET\", \"https://person.clearbit.com/v1/people/email/alex@alexmaccaw.com\", nil)"
+        },
+        "id": "85cd08f2-4cda-3d04-8667-5a25a25487c3",
+        "branch": "main",
+        "message": "Add context timeout to scanners",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "79496b81427a33db4580fc8a2f4160e78bf336fe",
+        "date": "2022-02-15T18:54:47-08:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/clearbit/clearbit.go",
+        "line": "5",
+        "secret": "//person.clearbit.com/v1/people/email/alex@alexmaccaw.com",
+        "context": {
+          "5": "-\t\t\treq, err := http.NewRequestWithContext(ctx, \"GET\", \"https://person.clearbit.com/v1/people/email/alex@alexmaccaw.com\", nil)"
+        },
+        "id": "85cd08f2-4cda-3d04-8667-5a25a25487c3",
+        "branch": "main",
+        "message": "check request errors",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "99372694ca89261e0ee03b2d3b09226ad080b339",
+        "date": "2022-03-23T16:42:34-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "scripts/searchOrg.py",
+        "line": "12",
+        "secret": "-----BEGIN DSA PRIVATE KEY-----",
+        "context": {
+          "12": "+    \"SSH (DSA) private key\": \"-----BEGIN DSA PRIVATE KEY-----\","
+        },
+        "id": "d7080f65-9b44-3e5b-a47a-8c149d26e9e6",
+        "branch": "paths",
+        "message": "Merge pull request #135 from max-sixty/patch-1\n\nBenifit -> Benefit",
+        "author": "Dylan Ayrey <dxa4481@rit.edu>",
+        "commit": "a4c69fa2f6b256bfe824ac82b96c77eb8c06b2d0",
+        "date": "2018-12-16T22:21:16-08:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "24",
+        "secret": "AKIAXYZDQCEN4B6JSJQI",
+        "context": {
+          "24": "+\t\t\t\t\"70001020fab32b1fcf2f1f0e5c66424eae649826-aws\":   {B: []byte(\"+[default]\\n+aws_access_key_id = AKIAXYZDQCEN4B6JSJQI\\n+aws_secret_access_key = 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\\n+output = json\\n+region = us-east-2\\n\")},"
+        },
+        "id": "30325b83-51a2-3b4f-8ef4-8d573368d8d8",
+        "branch": "main",
+        "message": "Include line numbers in git metadata (#97)\n\n* Include line numbers in git metadata\r\n\r\n* Update tests for fragments and line numbers",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "c2b4f0bc39aa8dd92372ed066040c8289b2703a2",
+        "date": "2022-03-22T09:27:15-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "15",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "15": "-\t\t\t\t\"90c75f884c65dc3638ca1610bd9844e668f213c2-aws\":   {B: []byte(\"this is the secret: [Default]\\nAccess key Id: AKIAILE3JG6KMS3HZGCA\\nSecret Access Key: 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\\n\"), Multi: true},"
+        },
+        "id": "43b23fe6-083b-3775-957e-f8b943de1b3e",
+        "branch": "main",
+        "message": "Use .Line to reduce diff strangeness (#380)",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "af979d46202da8f3f24a8a626dfb3d529b405295",
+        "date": "2022-04-11T16:38:08-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "23",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "23": "+\t\t\t\t\"84e9c75e388ae3e866e121087ea2dd45a71068f2-aws\":   {B: []byte(\"this is the secret: [Default]\\nAccess key Id: AKIAILE3JG6KMS3HZGCA\\nSecret Access Key: 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\\nokay thank you bye\\n\")},"
+        },
+        "id": "b40233a1-ecfb-3f05-8f4b-bc1a6490f46c",
+        "branch": "main",
+        "message": "Match expected chunks to actual",
+        "author": "Bill Rich <bill.rich@trufflesec.com>",
+        "commit": "6b183424f568b9c257306883232ee1fd0268f32d",
+        "date": "2022-02-15T18:54:47-08:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "34",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "34": "+\t\t\t\t\"90c75f884c65dc3638ca1610bd9844e668f213c2-aws\":   {B: []byte(\"+this is the secret: [Default]\\n+Access key Id: AKIAILE3JG6KMS3HZGCA\\n+Secret Access Key: 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\\n+okay thank you bye\\n\")},"
+        },
+        "id": "43b23fe6-083b-3775-957e-f8b943de1b3e",
+        "branch": "main",
+        "message": "Include line numbers in git metadata (#97)\n\n* Include line numbers in git metadata\r\n\r\n* Update tests for fragments and line numbers",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "c2b4f0bc39aa8dd92372ed066040c8289b2703a2",
+        "date": "2022-03-22T09:27:15-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "truffleHog/regexChecks.py",
+        "line": "10",
+        "secret": "-----BEGIN DSA PRIVATE KEY-----",
+        "context": {
+          "10": "-    \"SSH (DSA) private key\": re.compile('-----BEGIN DSA PRIVATE KEY-----'),"
+        },
+        "id": "9843276d-35d8-3435-bc52-9b9a75cd703c",
+        "branch": "paths",
+        "message": "Update regexChecks.py",
+        "author": "Chris Gates <chris@carnal0wnage.com>",
+        "commit": "b6073aafed119255301571cf8ff1ea43ede87c95",
+        "date": "2017-12-08T11:38:45-05:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "5",
+        "secret": "AKIAXYZDQCEN4B6JSJQI",
+        "context": {
+          "5": "-\t\t\t\t\"70001020fab32b1fcf2f1f0e5c66424eae649826-aws\":   {B: []byte(\"[default]\\naws_access_key_id = AKIAXYZDQCEN4B6JSJQI\\naws_secret_access_key = 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\\noutput = json\\nregion = us-east-2\\n\")},"
+        },
+        "id": "3086243d-d2d6-372b-a2a8-f9a90f065422",
+        "branch": "main",
+        "message": "Use .Line to reduce diff strangeness (#380)",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "af979d46202da8f3f24a8a626dfb3d529b405295",
+        "date": "2022-04-11T16:38:08-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "4",
+        "secret": "AKIAXYZDQCEN4B6JSJQI",
+        "context": {
+          "4": " \t\t\t\t\"70001020fab32b1fcf2f1f0e5c66424eae649826-aws\":   {B: []byte(\"[default]\\naws_access_key_id = AKIAXYZDQCEN4B6JSJQI\\naws_secret_access_key = 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\\noutput = json\\nregion = us-east-2\\n\")},"
+        },
+        "id": "30325b83-51a2-3b4f-8ef4-8d573368d8d8",
+        "branch": "main",
+        "message": "Match expected chunks to actual",
+        "author": "Bill Rich <bill.rich@trufflesec.com>",
+        "commit": "6b183424f568b9c257306883232ee1fd0268f32d",
+        "date": "2022-02-15T18:54:47-08:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "8",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "8": "-\t\t\t\t\"90c75f884c65dc3638ca1610bd9844e668f213c2-aws\":   {B: []byte(\"blah blaj\\n\\nthis is the secret: [Default]\\nAccess key Id: AKIAILE3JG6KMS3HZGCA\\nSecret Access Key: 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\\n\\nokay thank you bye\\n\")},"
+        },
+        "id": "43b23fe6-083b-3775-957e-f8b943de1b3e",
+        "branch": "main",
+        "message": "Match expected chunks to actual",
+        "author": "Bill Rich <bill.rich@trufflesec.com>",
+        "commit": "6b183424f568b9c257306883232ee1fd0268f32d",
+        "date": "2022-02-15T18:54:47-08:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/debounce/debounce.go",
+        "line": "6",
+        "secret": "&email=some@gmail.com",
+        "context": {
+          "6": "+\t\t\treq, _ := http.NewRequest(\"GET\", \"https://api.debounce.io/v1/?api=\"+resMatch+\"&email=some@gmail.com\", nil)"
+        },
+        "id": "01631f41-0575-393d-99bb-0773ec3f556c",
+        "branch": "main",
+        "message": "Add context timeout to scanners",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "79496b81427a33db4580fc8a2f4160e78bf336fe",
+        "date": "2022-02-15T18:54:47-08:00"
+      },
+      {
+        "rule": {
+          "id": "private.pgp-key",
+          "message": "PGP Private Key Block",
+          "pattern": "-----BEGIN PGP PRIVATE KEY BLOCK-----",
+          "severity": "HIGH"
+        },
+        "path": "scripts/searchOrg.py",
+        "line": "14",
+        "secret": "-----BEGIN PGP PRIVATE KEY BLOCK-----",
+        "context": {
+          "14": "-    \"PGP private key block\": \"-----BEGIN PGP PRIVATE KEY BLOCK-----\","
+        },
+        "id": "8599eb65-868e-3216-8ee1-ec48864f4345",
+        "branch": "paths",
+        "message": "resolving merge conflicts",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "466cdc94b4fcb0acd1904726a9b4de5c26e9125d",
+        "date": "2019-05-05T22:47:40-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "25",
+        "secret": "AKIA2E0A8F3B244C9986",
+        "context": {
+          "25": "+\t\t\t\t\"8fe6f04ef1839e3fc54b5147e3d0e0b7ab971bd5-aws\":   {B: []byte(\"blah blaj\\n\\nthis is the secret: AKIA2E0A8F3B244C9986\\n\\nokay thank you bye\")},"
+        },
+        "id": "1c843567-a1c8-39a2-8550-7aa7cd67853d",
+        "branch": "main",
+        "message": "Use gitleaks git cmd stream (#75)\n\n* Switch to git cmd stream\r\n\r\n* Fix rebase issues",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "0ee34a5be6702e1526031de68a69c3ec0806a9b0",
+        "date": "2022-03-14T17:12:58-07:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/dotmailer/dotmailer.go",
+        "line": "14",
+        "secret": "{12}@apiconnector.com",
+        "context": {
+          "14": " \tkeyPat  = regexp.MustCompile(detectors.PrefixRegex([]string{\"dotmailer\"}) + `\\b(apiuser-[a-z0-9]{12}@apiconnector.com)\\b`)"
+        },
+        "id": "9e3f86b1-6084-3c31-8e7e-64e2d6f25398",
+        "branch": "main",
+        "message": "Clean up comments. (#562)",
+        "author": "ahrav <ahravdutta02@gmail.com>",
+        "commit": "198cb1a786a97730e9532260f80fd1f2d795bfa2",
+        "date": "2022-05-16T09:03:10-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "truffleHog/regexChecks.py",
+        "line": "11",
+        "secret": "-----BEGIN EC PRIVATE KEY-----",
+        "context": {
+          "11": "-    \"SSH (EC) private key\": re.compile('-----BEGIN EC PRIVATE KEY-----'),"
+        },
+        "id": "b0a0eab1-0fdf-3b56-929c-dd11c4f7ffdc",
+        "branch": "paths",
+        "message": "Merge https://github.com/carnal0wnage/truffleHog-1 into dev",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "4e1884de29ccc5ca2a9a6c3c19fe912a4ae60ea1",
+        "date": "2017-12-10T12:49:19-08:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "pkg/detectors/privatekey/privatekey_test.go",
+        "line": "122",
+        "secret": "-----BEGIN OPENSSH PRIVATE KEY-----",
+        "context": {
+          "122": "\t\t\t\tdata: []byte(`-----BEGIN OPENSSH PRIVATE KEY-----"
+        },
+        "id": "2a039794-18d2-3a3b-8ff0-c252e8648e87",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "truffleHog/regexChecks.py",
+        "line": "10",
+        "secret": "-----BEGIN DSA PRIVATE KEY-----",
+        "context": {
+          "10": "-    \"SSH (DSA) private key\": re.compile('-----BEGIN DSA PRIVATE KEY-----'),"
+        },
+        "id": "9843276d-35d8-3435-bc52-9b9a75cd703c",
+        "branch": "paths",
+        "message": "Merge https://github.com/carnal0wnage/truffleHog-1 into dev",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "4e1884de29ccc5ca2a9a6c3c19fe912a4ae60ea1",
+        "date": "2017-12-10T12:49:19-08:00"
+      },
+      {
+        "rule": {
+          "id": "generic.secret",
+          "message": "Generic Secret",
+          "pattern": "[s|S][e|E][c|C][r|R][e|E][t|T].*['|\"][0-9a-zA-Z]{32,45}['|\"]",
+          "severity": "LOW"
+        },
+        "path": "test_all.py",
+        "line": "22",
+        "secret": "secret = '9ed54617547cfca783e0f81f8dc5c927e3d1e345'",
+        "context": {
+          "22": "+        commit_w_secret = '9ed54617547cfca783e0f81f8dc5c927e3d1e345'"
+        },
+        "id": "d6aa22b6-31c0-3906-9456-b2c59f19c319",
+        "branch": "paths",
+        "message": "Merge pull request #114 from jwilk-forks/spelling\n\nFix typos",
+        "author": "Dylan Ayrey <dxa4481@rit.edu>",
+        "commit": "d768edc419bda068aaf50406dc35ed8ffa3b25c6",
+        "date": "2018-08-24T20:33:23-07:00"
+      },
+      {
+        "rule": {
+          "id": "github.token",
+          "message": "GitHub Token",
+          "pattern": "[g|G][i|I][t|T][h|H][u|U][b|B].*['|\"][0-9a-zA-Z]{35,40}['|\"]",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/detectors/airbrakeprojectkey/airbrakeprojectkey.go",
+        "line": "3",
+        "secret": "github.com/airbrake/airbrake\",\"revision\":\"38748467ea579e7ae64f7815452307c9d05e05c5\"",
+        "context": {
+          "3": " \t\t\t\tpayload := strings.NewReader(`{\"environment\":\"production\",\"username\":\"john\",\"email\":\"john@smith.com\",\"repository\":\"https://github.com/airbrake/airbrake\",\"revision\":\"38748467ea579e7ae64f7815452307c9d05e05c5\",\"version\":\"v2.0\"}`)"
+        },
+        "id": "c8a19ad7-6cb5-33b2-bb21-568d267c1b7d",
+        "branch": "main",
+        "message": "check request errors",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "99372694ca89261e0ee03b2d3b09226ad080b339",
+        "date": "2022-03-23T16:42:34-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "scripts/searchOrg.py",
+        "line": "12",
+        "secret": "-----BEGIN DSA PRIVATE KEY-----",
+        "context": {
+          "12": "-    \"SSH (DSA) private key\": \"-----BEGIN DSA PRIVATE KEY-----\","
+        },
+        "id": "d7080f65-9b44-3e5b-a47a-8c149d26e9e6",
+        "branch": "paths",
+        "message": "resolving merge conflicts",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "466cdc94b4fcb0acd1904726a9b4de5c26e9125d",
+        "date": "2019-05-05T22:47:40-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "pkg/detectors/privatekey/privatekey_test.go",
+        "line": "168",
+        "secret": "-----BEGIN OPENSSH PRIVATE KEY-----",
+        "context": {
+          "168": "\t\t\t\t\tRedacted:     \"-----BEGIN OPENSSH PRIVATE KEY-----\\nb3BlbnNzaC1rZXktdjEAAAAACmFl\","
+        },
+        "id": "2a039794-18d2-3a3b-8ff0-c252e8648e87",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "truffleHog/regexChecks.py",
+        "line": "5",
+        "secret": "-----BEGIN RSA PRIVATE KEY-----",
+        "context": {
+          "5": "-    \"RSA private key\": re.compile('-----BEGIN RSA PRIVATE KEY-----'),"
+        },
+        "id": "4abedba9-4cc3-3953-85f9-714bc7a774e1",
+        "branch": "paths",
+        "message": "adding some more signals",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "e1d329e58ae387b1b9a2599a9b418ed0aa71a73e",
+        "date": "2017-10-10T21:15:41-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "scripts/searchOrg.py",
+        "line": "11",
+        "secret": "-----BEGIN OPENSSH PRIVATE KEY-----",
+        "context": {
+          "11": "-    \"SSH (OPENSSH) private key\": \"-----BEGIN OPENSSH PRIVATE KEY-----\","
+        },
+        "id": "956b6c29-1ccf-3454-a678-560fd0be89c5",
+        "branch": "paths",
+        "message": "resolving merge conflicts",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "466cdc94b4fcb0acd1904726a9b4de5c26e9125d",
+        "date": "2019-05-05T22:47:40-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "scripts/searchOrg.py",
+        "line": "12",
+        "secret": "-----BEGIN DSA PRIVATE KEY-----",
+        "context": {
+          "12": "-    \"SSH (DSA) private key\": \"-----BEGIN DSA PRIVATE KEY-----\","
+        },
+        "id": "d7080f65-9b44-3e5b-a47a-8c149d26e9e6",
+        "branch": "paths",
+        "message": "modifying search org",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "3048c6429d80094b42fd44919e3d6768536178ce",
+        "date": "2018-09-29T09:21:15-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "pkg/detectors/githubapp/githubapp.go",
+        "line": "30",
+        "secret": "-----BEGIN RSA PRIVATE KEY-----",
+        "context": {
+          "30": "\tkeyPat = regexp.MustCompile(detectors.PrefixRegex([]string{\"github\"}) + `(-----BEGIN RSA PRIVATE KEY-----\\s[A-Za-z0-9+\\/\\s]*\\s-----END RSA PRIVATE KEY-----)`)"
+        },
+        "id": "f63cca7a-f4ba-3a81-80ed-9cc432aa572d",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/mailboxlayer/mailboxlayer.go",
+        "line": "51",
+        "secret": "&email=support@email.com",
+        "context": {
+          "51": "\t\t\treq, err := http.NewRequestWithContext(ctx, \"GET\", \"https://apilayer.net/api/check?access_key=\"+resMatch+\"&email=support@email.com\", nil)"
+        },
+        "id": "69c321c7-00f8-30e8-a962-98330c0fc044",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "8",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "8": "-\t\t\t\t\"90c75f884c65dc3638ca1610bd9844e668f213c2-aws\":   {B: []byte(\"blah blaj\\n\\nthis is the secret: [Default]\\nAccess key Id: AKIAILE3JG6KMS3HZGCA\\nSecret Access Key: 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\\n\\nokay thank you bye\\n\")},"
+        },
+        "id": "b40233a1-ecfb-3f05-8f4b-bc1a6490f46c",
+        "branch": "main",
+        "message": "Match expected chunks to actual",
+        "author": "Bill Rich <bill.rich@trufflesec.com>",
+        "commit": "6b183424f568b9c257306883232ee1fd0268f32d",
+        "date": "2022-02-15T18:54:47-08:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "16",
+        "secret": "AKIAXYZDQCEN4B6JSJQI",
+        "context": {
+          "16": "+\t\t\t\t\"70001020fab32b1fcf2f1f0e5c66424eae649826-aws\":   {B: []byte(\"[default]\\naws_access_key_id = AKIAXYZDQCEN4B6JSJQI\\naws_secret_access_key = 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\\noutput = json\\nregion = us-east-2\\n\")},"
+        },
+        "id": "30325b83-51a2-3b4f-8ef4-8d573368d8d8",
+        "branch": "main",
+        "message": "Use gitleaks git cmd stream (#75)\n\n* Switch to git cmd stream\r\n\r\n* Fix rebase issues",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "0ee34a5be6702e1526031de68a69c3ec0806a9b0",
+        "date": "2022-03-14T17:12:58-07:00"
+      },
+      {
+        "rule": {
+          "id": "generic.secret",
+          "message": "Generic Secret",
+          "pattern": "[s|S][e|E][c|C][r|R][e|E][t|T].*['|\"][0-9a-zA-Z]{32,45}['|\"]",
+          "severity": "LOW"
+        },
+        "path": "test_all.py",
+        "line": "14",
+        "secret": "secret = '9ed54617547cfca783e0f81f8dc5c927e3d1e345'",
+        "context": {
+          "14": "+        commit_w_secret = '9ed54617547cfca783e0f81f8dc5c927e3d1e345'"
+        },
+        "id": "d6aa22b6-31c0-3906-9456-b2c59f19c319",
+        "branch": "v2",
+        "message": "Fixed since_commit and tests (#219)\n\n* Fixed since_commit and tests\r\n\r\n* Updated testing comment\r\n\r\nCo-authored-by: Dylan Ayrey <dxa4481@rit.edu>",
+        "author": "Doug Rickert <dmrickert@gmail.com>",
+        "commit": "288f35ed2e73145e3578207e896a4cf1600bea45",
+        "date": "2021-01-30T10:50:09-08:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/dotmailer/dotmailer.go",
+        "line": "24",
+        "secret": "{12}@apiconnector.com",
+        "context": {
+          "24": "\tkeyPat  = regexp.MustCompile(detectors.PrefixRegex([]string{\"dotmailer\"}) + `\\b(apiuser-[a-z0-9]{12}@apiconnector.com)\\b`)"
+        },
+        "id": "9e3f86b1-6084-3c31-8e7e-64e2d6f25398",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "README.md",
+        "line": "37",
+        "secret": "dustindecker@protonmail.com",
+        "context": {
+          "37": "-Email: dustindecker@protonmail.com"
+        },
+        "id": "6f0557a3-21da-3b62-a927-e9332fe2adfa",
+        "branch": "main",
+        "message": "update docs and support multi platform docker images",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "a96de1a2cd8d81f26f1b27cff85216eff67d909a",
+        "date": "2022-02-15T18:54:47-08:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/engine/git_test.go",
+        "line": "6",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "6": "+\t\t\t\t\"84e9c75e388ae3e866e121087ea2dd45a71068f2\": \"AKIAILE3JG6KMS3HZGCA\","
+        },
+        "id": "d51ec4dc-d998-3fba-afb6-307d4dc50341",
+        "branch": "main",
+        "message": "Use gitleaks git cmd stream (#75)\n\n* Switch to git cmd stream\r\n\r\n* Fix rebase issues",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "0ee34a5be6702e1526031de68a69c3ec0806a9b0",
+        "date": "2022-03-14T17:12:58-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/engine/git_test.go",
+        "line": "43",
+        "secret": "AKIAXYZDQCEN4B6JSJQI",
+        "context": {
+          "43": "+\t\t\t\t\"70001020fab32b1fcf2f1f0e5c66424eae649826\": \"AKIAXYZDQCEN4B6JSJQI\","
+        },
+        "id": "9328ef1b-cd6c-32dc-acb5-b958de816147",
+        "branch": "main",
+        "message": "Include line numbers in git metadata (#97)\n\n* Include line numbers in git metadata\r\n\r\n* Update tests for fragments and line numbers",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "c2b4f0bc39aa8dd92372ed066040c8289b2703a2",
+        "date": "2022-03-22T09:27:15-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "truffleHog/regexChecks.py",
+        "line": "9",
+        "secret": "-----BEGIN OPENSSH PRIVATE KEY-----",
+        "context": {
+          "9": "-    \"SSH (OPENSSH) private key\": re.compile('-----BEGIN OPENSSH PRIVATE KEY-----'),"
+        },
+        "id": "e1a168d1-30a8-3b04-a755-f8b1143e1beb",
+        "branch": "paths",
+        "message": "Update regexChecks.py",
+        "author": "Chris Gates <chris@carnal0wnage.com>",
+        "commit": "b6073aafed119255301571cf8ff1ea43ede87c95",
+        "date": "2017-12-08T11:38:45-05:00"
+      },
+      {
+        "rule": {
+          "id": "generic.password-in-url",
+          "message": "Password in URL",
+          "pattern": "[a-zA-Z]{3,10}://[^/\\s:@]{3,20}:[^/\\s:@]{3,20}@.{1,100}[\"'\\s]",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/uri/uri_test.go",
+        "line": "66",
+        "secret": "https://httpwatch:**********@www.httpwatch.com/httpgallery/authentication/authenticatedimage/default.aspx\"",
+        "context": {
+          "66": "\t\t\t\t\tRedacted:     \"https://httpwatch:**********@www.httpwatch.com/httpgallery/authentication/authenticatedimage/default.aspx\","
+        },
+        "id": "a89ac3b9-292c-3b2f-b932-28d07778a457",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/clearbit/clearbit.go",
+        "line": "51",
+        "secret": "//person.clearbit.com/v1/people/email/alex@alexmaccaw.com",
+        "context": {
+          "51": "\t\t\treq, err := http.NewRequestWithContext(ctx, \"GET\", \"https://person.clearbit.com/v1/people/email/alex@alexmaccaw.com\", nil)"
+        },
+        "id": "85cd08f2-4cda-3d04-8667-5a25a25487c3",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "25",
+        "secret": "AKIA2E0A8F3B244C9986",
+        "context": {
+          "25": "+\t\t\t\t\"8fe6f04ef1839e3fc54b5147e3d0e0b7ab971bd5-aws\":   {B: []byte(\"+blah blaj \\n+ \\n+this is the secret: AKIA2E0A8F3B244C9986 \\n+ \\n+okay thank you bye\\n\"), Multi: true},"
+        },
+        "id": "221352a8-4663-3c39-a868-b05e2282d84e",
+        "branch": "main",
+        "message": "Use .Line to reduce diff strangeness (#380)",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "af979d46202da8f3f24a8a626dfb3d529b405295",
+        "date": "2022-04-11T16:38:08-07:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/debounce/debounce.go",
+        "line": "5",
+        "secret": "&email=some@gmail.com",
+        "context": {
+          "5": "-\t\t\treq, _ := http.NewRequestWithContext(ctx, \"GET\", \"https://api.debounce.io/v1/?api=\"+resMatch+\"&email=some@gmail.com\", nil)"
+        },
+        "id": "01631f41-0575-393d-99bb-0773ec3f556c",
+        "branch": "main",
+        "message": "Add context timeout to scanners",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "79496b81427a33db4580fc8a2f4160e78bf336fe",
+        "date": "2022-02-15T18:54:47-08:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/mailboxlayer/mailboxlayer.go",
+        "line": "6",
+        "secret": "&email=support@email.com",
+        "context": {
+          "6": "+\t\t\treq, _ := http.NewRequestWithContext(ctx, \"GET\", \"http://apilayer.net/api/check?access_key=\"+resMatch+\"&email=support@email.com\", nil)"
+        },
+        "id": "69c321c7-00f8-30e8-a962-98330c0fc044",
+        "branch": "main",
+        "message": "improvements",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "c20e9f4732060372866ff804b1ee96676839f722",
+        "date": "2022-03-04T08:39:17-08:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "22",
+        "secret": "AKIA2E0A8F3B244C9986",
+        "context": {
+          "22": "-\t\t\t\t\"8fe6f04ef1839e3fc54b5147e3d0e0b7ab971bd5-aws\":   {B: []byte(\"+blah blaj \\n+ \\n+this is the secret: AKIA2E0A8F3B244C9986 \\n+ \\n+okay thank you bye\\n\"), Multi: true},"
+        },
+        "id": "221352a8-4663-3c39-a868-b05e2282d84e",
+        "branch": "main",
+        "message": "Include line numbers in git metadata (#97)\n\n* Include line numbers in git metadata\r\n\r\n* Update tests for fragments and line numbers",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "c2b4f0bc39aa8dd92372ed066040c8289b2703a2",
+        "date": "2022-03-22T09:27:15-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "truffleHog/regexChecks.py",
+        "line": "8",
+        "secret": "-----BEGIN RSA PRIVATE KEY-----",
+        "context": {
+          "8": "     \"RSA private key\": re.compile('-----BEGIN RSA PRIVATE KEY-----'),"
+        },
+        "id": "4abedba9-4cc3-3953-85f9-714bc7a774e1",
+        "branch": "paths",
+        "message": "Merge https://github.com/carnal0wnage/truffleHog-1 into dev",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "4e1884de29ccc5ca2a9a6c3c19fe912a4ae60ea1",
+        "date": "2017-12-10T12:49:19-08:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "setup.py",
+        "line": "3",
+        "secret": "author_email='dxa4481@rit.edu",
+        "context": {
+          "3": "     author_email='dxa4481@rit.edu',"
+        },
+        "id": "28f1812d-7fd6-3548-9f5e-4180211d0a1a",
+        "branch": "paths",
+        "message": "fixing setup issue",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "f368af1b9b5a2c180fb8dd7a88bd0a45777750e2",
+        "date": "2018-04-14T10:27:26-07:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/giturl/giturl_test.go",
+        "line": "52",
+        "secret": "git@bitbucket.org",
+        "context": {
+          "52": "\t\t\"bitbucket needs https\": {Repo: \"git@bitbucket.org:org/repo.git\", Out: \"\", Err: errors.New(\"Bitbucket requires https repo urls: e.g. https://bitbucket.org/org/repo.git\")},"
+        },
+        "id": "55190f40-7e98-3d72-b25c-4d81e4ace5d5",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/engine/git_test.go",
+        "line": "4",
+        "secret": "AKIAXYZDQCEN4B6JSJQI",
+        "context": {
+          "4": " \t\t\t\t\"70001020fab32b1fcf2f1f0e5c66424eae649826\": \"AKIAXYZDQCEN4B6JSJQI\","
+        },
+        "id": "9328ef1b-cd6c-32dc-acb5-b958de816147",
+        "branch": "main",
+        "message": "Use gitleaks git cmd stream (#75)\n\n* Switch to git cmd stream\r\n\r\n* Fix rebase issues",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "0ee34a5be6702e1526031de68a69c3ec0806a9b0",
+        "date": "2022-03-14T17:12:58-07:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/sonarcloud/sonarcloud.go",
+        "line": "51",
+        "secret": "\"GET\", \"https://\"+resMatch+\"@sonarcloud.io",
+        "context": {
+          "51": "\t\t\treq, err := http.NewRequestWithContext(ctx, \"GET\", \"https://\"+resMatch+\"@sonarcloud.io/api/authentication/validate\", nil)"
+        },
+        "id": "6245bb01-ea6b-3734-bbd2-673ff02ea4fc",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "14",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "14": "+\t\t\t\t\"90c75f884c65dc3638ca1610bd9844e668f213c2-aws\":   {B: []byte(\"this is the secret: [Default]\\nAccess key Id: AKIAILE3JG6KMS3HZGCA\\nSecret Access Key: 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\\nokay thank you bye\\n\")},"
+        },
+        "id": "43b23fe6-083b-3775-957e-f8b943de1b3e",
+        "branch": "main",
+        "message": "Match expected chunks to actual",
+        "author": "Bill Rich <bill.rich@trufflesec.com>",
+        "commit": "6b183424f568b9c257306883232ee1fd0268f32d",
+        "date": "2022-02-15T18:54:47-08:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "README.md",
+        "line": "9",
+        "secret": "-----BEGIN EC PRIVATE KEY-----",
+        "context": {
+          "9": "-    \"RSA private key\": \"-----BEGIN EC PRIVATE KEY-----\""
+        },
+        "id": "17b20482-12f2-3cd3-9013-cc95fb47b5ea",
+        "branch": "paths",
+        "message": "Merge branch 'dev' of github.com:dxa4481/truffleHog into dev",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "1e1974b2eb888cdf876623973301e2e1a0faf8cc",
+        "date": "2018-05-13T10:52:22-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "15",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "15": "-\t\t\t\t\"90c75f884c65dc3638ca1610bd9844e668f213c2-aws\":   {B: []byte(\"+this is the secret: [Default]\\n+Access key Id: AKIAILE3JG6KMS3HZGCA\\n+Secret Access Key: 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\\n+okay thank you bye\\n\")},"
+        },
+        "id": "43b23fe6-083b-3775-957e-f8b943de1b3e",
+        "branch": "main",
+        "message": "Use gitleaks git cmd stream (#75)\n\n* Switch to git cmd stream\r\n\r\n* Fix rebase issues",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "0ee34a5be6702e1526031de68a69c3ec0806a9b0",
+        "date": "2022-03-14T17:12:58-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "scripts/searchOrg.py",
+        "line": "10",
+        "secret": "-----BEGIN RSA PRIVATE KEY-----",
+        "context": {
+          "10": "-    \"RSA private key\": \"-----BEGIN RSA PRIVATE KEY-----\","
+        },
+        "id": "298c4013-aa01-3863-8689-8cccebe141d0",
+        "branch": "paths",
+        "message": "resolving merge conflicts",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "466cdc94b4fcb0acd1904726a9b4de5c26e9125d",
+        "date": "2019-05-05T22:47:40-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "truffleHog/regexChecks.py",
+        "line": "4",
+        "secret": "-----BEGIN RSA PRIVATE KEY-----",
+        "context": {
+          "4": "     \"RSA private key\": re.compile('-----BEGIN RSA PRIVATE KEY-----'),"
+        },
+        "id": "4abedba9-4cc3-3953-85f9-714bc7a774e1",
+        "branch": "paths",
+        "message": "tweaking regex",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "0653620019e670ac1fe2565ca87eb2297f3cc01a",
+        "date": "2017-10-30T19:06:22-07:00"
+      },
+      {
+        "rule": {
+          "id": "generic.secret",
+          "message": "Generic Secret",
+          "pattern": "[s|S][e|E][c|C][r|R][e|E][t|T].*['|\"][0-9a-zA-Z]{32,45}['|\"]",
+          "severity": "LOW"
+        },
+        "path": "test_all.py",
+        "line": "19",
+        "secret": "secret = '9ed54617547cfca783e0f81f8dc5c927e3d1e345'",
+        "context": {
+          "19": "+        commit_w_secret = '9ed54617547cfca783e0f81f8dc5c927e3d1e345'"
+        },
+        "id": "d6aa22b6-31c0-3906-9456-b2c59f19c319",
+        "branch": "paths",
+        "message": "updating regexes",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "37f962034a57768db3b581b6a2d969015d673a1b",
+        "date": "2018-07-29T13:01:10-07:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "CODE_OF_CONDUCT.md",
+        "line": "5",
+        "secret": "dylan@trufflesec.com",
+        "context": {
+          "5": "-reported by contacting the project team at dylan@trufflesec.com. All"
+        },
+        "id": "700751e2-917d-3ea6-ae80-858d3b9ab211",
+        "branch": "v2-dev",
+        "message": "Update CODE_OF_CONDUCT.md",
+        "author": "Dylan Ayrey <dxa4481@rit.edu>",
+        "commit": "912141d887bb348aed289ed915a7974422f9f556",
+        "date": "2021-06-23T10:17:50-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "21",
+        "secret": "AKIA2E0A8F3B244C9986",
+        "context": {
+          "21": " \t\t\t\t\"8fe6f04ef1839e3fc54b5147e3d0e0b7ab971bd5-aws\":   {B: []byte(\"blah blaj\\n\\nthis is the secret: AKIA2E0A8F3B244C9986\\n\\nokay thank you bye\")},"
+        },
+        "id": "1c843567-a1c8-39a2-8550-7aa7cd67853d",
+        "branch": "main",
+        "message": "Match expected chunks to actual",
+        "author": "Bill Rich <bill.rich@trufflesec.com>",
+        "commit": "6b183424f568b9c257306883232ee1fd0268f32d",
+        "date": "2022-02-15T18:54:47-08:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-api-key",
+          "message": "AWS API Key",
+          "pattern": "AKIA[0-9A-Z]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/engine/git_test.go",
+        "line": "40",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "40": "\t\t\t\t\"90c75f884c65dc3638ca1610bd9844e668f213c2\": {\"AKIAILE3JG6KMS3HZGCA\", 4},"
+        },
+        "id": "d51ec4dc-d998-3fba-afb6-307d4dc50341",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/engine/git_test.go",
+        "line": "33",
+        "secret": "AKIAILE3JG6KMS3HZGCA",
+        "context": {
+          "33": "+\t\t\t\t\"90c75f884c65dc3638ca1610bd9844e668f213c2\": \"AKIAILE3JG6KMS3HZGCA\","
+        },
+        "id": "02d7cdf6-e597-318a-b85e-56880882064a",
+        "branch": "main",
+        "message": "Include line numbers in git metadata (#97)\n\n* Include line numbers in git metadata\r\n\r\n* Update tests for fragments and line numbers",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "c2b4f0bc39aa8dd92372ed066040c8289b2703a2",
+        "date": "2022-03-22T09:27:15-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "scripts/searchOrg.py",
+        "line": "10",
+        "secret": "-----BEGIN RSA PRIVATE KEY-----",
+        "context": {
+          "10": "-    \"RSA private key\": \"-----BEGIN RSA PRIVATE KEY-----\","
+        },
+        "id": "298c4013-aa01-3863-8689-8cccebe141d0",
+        "branch": "paths",
+        "message": "modifying search org",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "3048c6429d80094b42fd44919e3d6768536178ce",
+        "date": "2018-09-29T09:21:15-07:00"
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "235",
+        "secret": "AKIA2E0A8F3B244C9986",
+        "context": {
+          "235": "\t\t\t\t\"8fe6f04ef1839e3fc54b5147e3d0e0b7ab971bd5-aws\":   {B: []byte(\"blah blaj\\n\\nthis is the secret: AKIA2E0A8F3B244C9986\\n\\nokay thank you bye\"), Multi: true},"
+        },
+        "id": "221352a8-4663-3c39-a868-b05e2282d84e",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "pkg/detectors/privatekey/privatekey_test.go",
+        "line": "105",
+        "secret": "-----BEGIN OPENSSH PRIVATE KEY-----",
+        "context": {
+          "105": "\t\t\t\t\tRedacted:     \"-----BEGIN OPENSSH PRIVATE KEY-----\\nb3BlbnNzaC1rZXktdjEAAAAABG5v\","
+        },
+        "id": "2a039794-18d2-3a3b-8ff0-c252e8648e87",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "truffleHog/defaultRegexes/regexChecks.py",
+        "line": "7",
+        "secret": "-----BEGIN RSA PRIVATE KEY-----",
+        "context": {
+          "7": "+    \"RSA private key\": re.compile('-----BEGIN RSA PRIVATE KEY-----'),"
+        },
+        "id": "aa4fc52f-439f-3a1e-8d00-f9677f62e46e",
+        "branch": "paths",
+        "message": "Changing regexes to install regex package",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "58690fe2e89d0aef28ae313c8554941104071bb1",
+        "date": "2018-04-14T10:26:10-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "truffleHog/regexChecks.py",
+        "line": "9",
+        "secret": "-----BEGIN OPENSSH PRIVATE KEY-----",
+        "context": {
+          "9": "+    \"SSH (OPENSSH) private key\": re.compile('-----BEGIN OPENSSH PRIVATE KEY-----'),"
+        },
+        "id": "e1a168d1-30a8-3b04-a755-f8b1143e1beb",
+        "branch": "paths",
+        "message": "Add coverage",
+        "author": "Stephen <stephen@egroat.com>",
+        "commit": "bbb1392f94ddf21ae18bce19f63f5abb309657c7",
+        "date": "2017-12-10T11:25:01-08:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "truffleHog/defaultRegexes/regexChecks.py",
+        "line": "9",
+        "secret": "-----BEGIN DSA PRIVATE KEY-----",
+        "context": {
+          "9": "+    \"SSH (DSA) private key\": re.compile('-----BEGIN DSA PRIVATE KEY-----'),"
+        },
+        "id": "0d4773e0-f01d-3162-b2be-80fdade29aad",
+        "branch": "paths",
+        "message": "Changing regexes to install regex package",
+        "author": "Dylan <dxa4481@rit.edu>",
+        "commit": "58690fe2e89d0aef28ae313c8554941104071bb1",
+        "date": "2018-04-14T10:26:10-07:00"
+      },
+      {
+        "rule": {
+          "id": "private.key",
+          "message": "Private Key",
+          "pattern": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+          "severity": "HIGH"
+        },
+        "path": "pkg/detectors/githubapp/githubapp.go",
+        "line": "16",
+        "secret": "-----BEGIN RSA PRIVATE KEY-----",
+        "context": {
+          "16": " \tkeyPat = regexp.MustCompile(detectors.PrefixRegex([]string{\"github\"}) + `(-----BEGIN RSA PRIVATE KEY-----\\s[A-Za-z0-9+\\/\\s]*\\s-----END RSA PRIVATE KEY-----)`)"
+        },
+        "id": "f63cca7a-f4ba-3a81-80ed-9cc432aa572d",
+        "branch": "main",
+        "message": "Clean up comments. (#562)",
+        "author": "ahrav <ahravdutta02@gmail.com>",
+        "commit": "198cb1a786a97730e9532260f80fd1f2d795bfa2",
+        "date": "2022-05-16T09:03:10-07:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/airbrakeprojectkey/airbrakeprojectkey.go",
+        "line": "59",
+        "secret": "john@smith.com",
+        "context": {
+          "59": "\t\t\t\tpayload := strings.NewReader(`{\"environment\":\"production\",\"username\":\"john\",\"email\":\"john@smith.com\",\"repository\":\"https://github.com/airbrake/airbrake\",\"revision\":\"38748467ea579e7ae64f7815452307c9d05e05c5\",\"version\":\"v2.0\"}`)"
+        },
+        "id": "f2081763-4068-3e06-a4e3-6ae5ef4e7393",
+        "branch": null,
+        "message": null,
+        "author": null,
+        "commit": null,
+        "date": null
+      },
+      {
+        "rule": {
+          "id": "amazon.aws-client-id",
+          "message": "AWS Client ID",
+          "pattern": "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+          "severity": "MEDIUM"
+        },
+        "path": "pkg/sources/git/git_test.go",
+        "line": "13",
+        "secret": "AKIAXYZDQCEN4B6JSJQI",
+        "context": {
+          "13": "-\t\t\t\t\"70001020fab32b1fcf2f1f0e5c66424eae649826-aws\":   {B: []byte(\"+[default] \\n+aws_access_key_id = AKIAXYZDQCEN4B6JSJQI \\n+aws_secret_access_key = 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 \\n+output = json \\n+region = us-east-2 \\n\")},"
+        },
+        "id": "30325b83-51a2-3b4f-8ef4-8d573368d8d8",
+        "branch": "main",
+        "message": "Include line numbers in git metadata (#97)\n\n* Include line numbers in git metadata\r\n\r\n* Update tests for fragments and line numbers",
+        "author": "Bill Rich <bill.rich@gmail.com>",
+        "commit": "c2b4f0bc39aa8dd92372ed066040c8289b2703a2",
+        "date": "2022-03-22T09:27:15-07:00"
+      },
+      {
+        "rule": {
+          "id": "email.address",
+          "message": "Generic Email Address",
+          "pattern": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+          "severity": "LOW"
+        },
+        "path": "pkg/detectors/kickbox/kickbox.go",
+        "line": "6",
+        "secret": "//api.kickbox.com/v2/verify?email=kickbox@example.com",
+        "context": {
+          "6": "+\t\t\treq, _ := http.NewRequest(\"GET\", \"https://api.kickbox.com/v2/verify?email=kickbox@example.com&apikey=\"+resMatch, nil)"
+        },
+        "id": "4367f7ff-a724-3883-a98b-c3314d87d9e6",
+        "branch": "main",
+        "message": "Add context timeout to scanners",
+        "author": "Dustin Decker <dustin@trufflesec.com>",
+        "commit": "79496b81427a33db4580fc8a2f4160e78bf336fe",
+        "date": "2022-02-15T18:54:47-08:00"
+      }
+    ]
+  }
+]

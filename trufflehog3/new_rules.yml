@@ -1,25 +1,12 @@
 #
-# entropy-based rules
-#
-- id: high-entropy
-  message: High Entropy
-  minlen: 20
-  alphabet: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/="
-  threshold: 4.5
-  severity: MEDIUM
-- id: high-entropy
-  message: High Entropy
-  minlen: 20
-  alphabet: "0123456789abcdefABCDEF"
-  threshold: 3.0
-  severity: MEDIUM
-#
 # regexes-based rules
 #
+
 - id: private.pgp-key
   message: PGP Private Key Block
   pattern: "-----BEGIN PGP PRIVATE KEY BLOCK-----"
   severity: HIGH
+
 - id: private.key
   message: Private Key
   pattern: "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----"
@@ -33,6 +20,15 @@
   message: Amazon MWS Auth Token
   pattern: "amzn\\.mws\\.[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
   severity: MEDIUM
+- id: amazon.aws-client-id
+  message: AWS Client ID
+  pattern: "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}"
+  severity: MEDIUM 
+
+  #id: amazon.aws-access-key-ID
+  #message: Amazon AWS Access Key ID
+  #pattern: '(?<![A-Z0-9])[A-Z0-9]{20}(?![A-Z0-9])'
+  #severity: HIGH
 
 - id: facebook.access-token
   message: Facebook Access Token
@@ -150,8 +146,22 @@
   severity: LOW
 
   #new things
-  id: django.secret
+- id: django.secret
   message: Django secret
-  pattern: "SECRET_KEY\\s?=\\s?\\'[a-zA-Z0-9!@#$%^&*(-_=+)]{50}\\'"
+  pattern: "SECRET_KEY\\s?=\\s?\\'django-insecure-[a-zA-Z0-9!@#$%^&*(-_=+)]{50}\\'"
+  severity: HIGH
+  
+- id: github.personal.token
+  message: GitHub Personal Access Token
+  pattern: "ghp_[A-Za-z0-9_]+"
   severity: HIGH
 
+- id: github.oauth.token
+  message: GitHub OAuth Access Token
+  pattern: "gho_[A-Za-z0-9_]+"
+  severity: HIGH
+
+- id: email.address
+  message: Generic Email Address
+  pattern: '(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))'
+  severity: LOW

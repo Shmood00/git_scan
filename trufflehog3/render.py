@@ -7,9 +7,8 @@ from collections import defaultdict
 from typing import Any, Dict, Iterable, Tuple
 
 from trufflehog3 import STATIC_DIR, HTML_TEMPLATE_FILE, TEXT_TEMPLATE_FILE
-from trufflehog3.helper import Color
-from trufflehog3.models import Issue, Severity, Pattern  # noqa: F401 doctest
-
+from helper import Color
+from models import Issue, Severity, Pattern  # noqa: F401 doctest
 
 def text(issues: Iterable[Issue]) -> str:
     """Render issues as text.
@@ -39,16 +38,17 @@ def text(issues: Iterable[Issue]) -> str:
 
     """
     environment = jinja2.Environment(
-        loader=jinja2.FileSystemLoader(STATIC_DIR),
+        loader=jinja2.FileSystemLoader('static/'),
         autoescape=False,  # no need to escape anything for plaintext format
         auto_reload=False,
     )
-    template = environment.get_template(TEXT_TEMPLATE_FILE)
+    template = environment.get_template('report.text.j2')
     return template.render(issues=sorted(issues, key=_sort_keys), color=Color)
 
 
 # TODO switch to SARIF-compatible output?
 def json(issues: Iterable[Issue]) -> str:
+    
     """Render issues as JSON.
 
     Examples
@@ -75,6 +75,9 @@ def json(issues: Iterable[Issue]) -> str:
     >>> s = json([issue])
 
     """
+    
+    
+    #return jsonlib.dumps([asdict(i) for i in issues], indent=2, default=str)
     return jsonlib.dumps([i.asdict() for i in issues], indent=2, default=str)
 
 
@@ -105,27 +108,40 @@ def html(issues: Iterable[Issue]) -> str:
     >>> s = html([issue])
 
     """
+
     environment = jinja2.Environment(
-        loader=jinja2.FileSystemLoader(STATIC_DIR),
+        loader=jinja2.FileSystemLoader('static/'),
         autoescape=True,
         auto_reload=False,
     )
-    template = environment.get_template(HTML_TEMPLATE_FILE)
+    template = environment.get_template('report.html.j2')
     return template.render(**_prepare_report(issues))
 
 
 def _prepare_report(issues: Iterable[Issue]) -> Dict[str, Any]:
+    
     """Split issues and rules into structs handy for HTML report building."""
     totals = defaultdict(lambda: 0)
     report = defaultdict(lambda: defaultdict(lambda: defaultdict(list)))
+    
 
     for issue in sorted(issues, key=_sort_keys):
-        totals[issue.rule] += 1
-        report[issue.rule][issue.path][issue.commit].append(issue)
+        
+        for iss in issue.issues:
+        
+            totals[iss.rule] += 1
+            report[iss.rule][iss.path][iss.commit].append([iss, issue.url])
 
+    
     return dict(totals=totals, report=report)
 
 
 def _sort_keys(issue) -> Tuple[Severity, str, str]:
     """Return rule severity, message and issue path for sorting."""
-    return (-issue.rule.severity, issue.rule.message.lower(), issue.path)
+    
+    iss = issue.issues
+    
+    for i in iss:
+        return (-i.rule.severity, i.rule.message.lower(), i.path)
+
+    #return (-issue.rule.severity, issue.rule.message.lower(), issue.path)

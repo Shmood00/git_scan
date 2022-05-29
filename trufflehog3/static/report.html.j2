@@ -328,6 +328,7 @@
     </ul>
   </div>
   <div class="row">
+    
     <div class="col s12 m12 l3">
       <ul class="collection with-header no-border">
         <li class="collection-header transparent">
@@ -346,6 +347,7 @@
             {% set severity_color = "red" if rule.severity.name == "HIGH" else "orange" if rule.severity.name == "MEDIUM" else "green" -%}
             <p>
               <label>
+                
                 <input id="rule-{{ rule._uuid }}" type="checkbox" checked="checked" class="search-filter" />
                 <span class="helper-text" onclick="checkOne('rule-{{ rule._uuid }}');">{{ rule.message }}</span>
                 <span class="badge {{ severity_color }}-text" onclick="return false;">{{ counter }}</span>
@@ -370,7 +372,9 @@
     <div class="col s12 m12 l7 offset-l1">
       <ul class="collection with-header no-border">
         <li class="collection-header transparent no-border">
+          
           <h4>Issues</h4>
+          
         </li>
       </ul>
       {% for rule, paths in report.items() -%}
@@ -378,21 +382,31 @@
       {% for path, revs in paths.items() | sort(attribute=0) -%}
       {% for rev, issues in revs.items() -%}
       {% set issue = issues[0] -%}
+      
       <div class="card issue rule-{{ rule._uuid }}">
         <div class="card-content">
           <span class="card-title">
             <span class="{{ 'tooltipped' if rule.pattern else '' }}" data-position="top" data-tooltip="{{ rule.pattern }}">{{ rule.message }}</span>
             <span class="new badge {{ severity_color }} darken-2" data-badge-caption="{{ rule.severity }}"></span>
+            <p>{{issue[1]}}</p>
           </span>
           <span>
-            <span class="search-path copyable monospace highlight break-all" onclick="copyToClipboard(event)">{{ path }}</span>
-            {% if issue.commit -%}
+            
+            {% if issue[1].endswith('.git') %}
+            
+            <a href="{{issue[1][:-4]}}/blob/{{issue[0].branch}}/{{path}}"><span class="search-path copyable monospace highlight break-all" onclick="copyToClipboard(event)">{{ path }}</span></a>
+            
+            {%else%}
+            <a href="{{issue[1]}}/blob/{{issue[0].branch}}/{{path}}"><span class="search-path copyable monospace highlight break-all" onclick="copyToClipboard(event)">{{ path }}</span></a>
+            {% endif %}
+            
+            {% if issue[0].commit -%}
             <span class="history-badge badge">
               <i class="material-icons">history</i>
             </span>
             {% endif -%}
           </span>
-          {% if issue.commit -%}
+          {% if issue[0].commit -%}
           <ul class="collapsible expandable z-depth-0 collapsible-details">
             <li>
               <div class="collapsible-body transparent">
@@ -400,25 +414,25 @@
                   <span class="left">
                     <i class="material-icons">call_split</i>
                   </span>
-                  <pre class="select">{{ issue.branch }}</pre>
+                  <pre class="select">{{ issue[0].branch }}</pre>
                 </div>
                 <div class="issue-metadata">
                   <span class="left">
                     <i class="material-icons">message</i>
                   </span>
-                  <pre class="select">{{ issue.message.splitlines()[0] }}</pre>
+                  <pre class="select">{{ issue[0].message.splitlines()[0] }}</pre>
                 </div>
                 <div class="issue-metadata">
                   <span class="left">
                     <i class="material-icons">person</i>
                   </span>
-                  <pre class="select">{{ issue.author }}</pre>
+                  <pre class="select">{{ issue[0].author }}</pre>
                 </div>
                 <div class="issue-metadata">
                   <span class="left">
                     <i class="material-icons">fingerprint</i>
                   </span>
-                  <pre class="select">{{ issue.commit }}</pre>
+                  <pre class="select">{{ issue[0].commit }}</pre>
                 </div>
               </div>
             </li>
@@ -428,13 +442,14 @@
         <div class="card-action">
           <ul class="collapsible expandable z-depth-0 monospace">
             {% for issue in issues -%}
-            {% set prefix, secret, suffix = issue.context[issue.line].partition(issue.secret) %}
+            
+            {% set prefix, secret, suffix = issue[0].context[issue[0].line].partition(issue[0].secret) %}
             <li>
-              <div class="{{ 'collapsible-header' if issue.multiline else 'non-collapsible-header' }}">
+              <div class="{{ 'collapsible-header' if issue[0].multiline else 'non-collapsible-header' }}">
                 <table>
                   <tr class="no-border">
                     <td class="code-line-number">
-                      {{ issue.line }}
+                      {{ issue[0].line }}
                     </td>
                     <td class="select code-line">
                       <pre>{{ prefix.lstrip() }}<span class="copyable {{ severity_color }}-text" onclick="copyToClipboard(event); event.stopPropagation();">{{ secret }}</span>{{ suffix.rstrip() }}</pre>
@@ -444,13 +459,13 @@
               </div>
               <div class="collapsible-body">
                 <table>
-                  {% for number, line in issue.context.items() -%}
+                  {% for number, line in issue[0].context.items() -%}
                   <tr class="no-border">
                     <td class="code-line-number">
                       {{ number }}
                     </td>
                     <td class="select code-line">
-                      {% if number == issue.line -%}
+                      {% if number == issue[0].line -%}
                       <pre>{{ prefix }}<span class="{{ severity_color }}-text">{{ secret }}</span>{{ suffix }}</pre>
                       {% else -%}
                       <pre>{{ line }}</pre>

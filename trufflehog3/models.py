@@ -9,7 +9,7 @@ from abc import ABC, abstractmethod
 from datetime import datetime
 from enum import auto, Enum, EnumMeta
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Iterable
 
 from trufflehog3 import log, helper, IGNORE_NOSECRET
 
@@ -551,6 +551,11 @@ class Issue(Model):
         """Return last context line number."""
         return self.lines[-1]
 
+#Added
+@attr.s
+class Results(Model):
+    url: str = attr.ib()
+    issues: Iterable[Issue] = attr.ib()
 
 @attr.s
 class Config(Model):

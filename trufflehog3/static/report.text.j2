@@ -1,19 +1,21 @@
 {% for issue in issues -%}
-{{ color.GREEN }}{{ issue.path }}
-{% set severity_color = color.RED if issue.rule.severity.name == "HIGH" else color.YELLOW if issue.rule.severity.name == "MEDIUM" else color.CYAN -%}
-{{ severity_color }}{{ "%-6s" % issue.rule.severity }}{{ color.BLUE }}  {{ issue.rule.message }}
-{% if issue.commit -%}
-Branch  {{ issue.branch }}
-Message {{ issue.message.splitlines()[0] }}
-Author  {{ issue.author }}
-Commit  {{ issue.commit }}
+
+{% for iss in issue.issues -%}
+{{ color.GREEN }}{{ iss.path }}
+{% set severity_color = color.RED if iss.rule.severity.name == "HIGH" else color.YELLOW if iss.rule.severity.name == "MEDIUM" else color.CYAN -%}
+{{ severity_color }}{{ "%-6s" % iss.rule.severity }}{{ color.BLUE }}  {{ iss.rule.message }}
+{% if iss.commit -%}
+Branch  {{ iss.branch }}
+Message {{ iss.message.splitlines()[0] }}
+Author  {{ iss.author }}
+Commit  {{ iss.commit }}
 {% endif -%}
 {{ color.RESET -}}
-{% set fmt = "%%%ds" % issue.line_end | string | length -%}
-{% for number, line in issue.context.items() -%}
-{% if number == issue.line -%}
+{% set fmt = "%%%ds" % iss.line_end | string | length -%}
+{% for number, line in iss.context.items() -%}
+{% if number == iss.line -%}
     {{ severity_color -}}
-    {% set line = line | replace(issue.secret, severity_color + issue.secret + color.RESET) -%}
+    {% set line = line | replace(iss.secret, severity_color + iss.secret + color.RESET) -%}
 {% else -%}
     {{ color.GRAY -}}
 {% endif -%}
@@ -22,4 +24,5 @@ Commit  {{ issue.commit }}
 {% if not loop.last -%}
 {{ color.GRAY }}{{ "~" * 80 }}{{ color.RESET }}
 {% endif -%}
+{% endfor -%}
 {% endfor -%}
